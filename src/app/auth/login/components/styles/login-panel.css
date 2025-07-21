@@ -15,8 +15,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Forma inclinada abajo */
+ 
+  /*  Transición suave del clip-path */
+  transition: clip-path 0.6s ease-in-out;
+}
+/* Inicio de sesión: corte inclinado abajo hacia la derecha */
+.glass-wrapper.inicio {
   clip-path: polygon(0% 0%, 100% 0%, 87% 100%, 0% 100%);
+}
+
+/* Registro: corte inclinado abajo hacia la izquierda */
+.glass-wrapper.registro {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 13% 100%);
 }
 
 
@@ -123,6 +133,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
 .login-panel__top {
   display: flex;
   justify-content: flex-end; /* alinea todo a la derecha */
