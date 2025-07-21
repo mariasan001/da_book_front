@@ -1,85 +1,165 @@
 .login-form {
-  background-color: #121212;
-  color: white;
-  padding: 3rem;
+  color: var(--color-texto-blanco);
+  padding: 2rem 5rem 5rem 5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  
+  justify-content: flex-start;
 }
 
 .login-form__logo {
-  width: 150px;
-  margin-bottom: 1rem;
+  width: 100px;
+  margin-bottom: 10rem;
+  margin-top: 0;
 }
 
 .login-form__title {
-  font-size: 1.8rem;
-  font-weight: bold;
+  font-size: 1.6rem;
+  font-weight: 900;
+  font-family: var(--fuente-principal) !important;
 }
 
 .login-form__subtitle {
-  margin-bottom: 2rem;
-  color: #ccc;
+  margin-bottom: 3rem;
+  margin-top: 3px;
+  font-size: 15px;
+  color: var(--color-gris-medio);
 }
 
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .input-icon {
   display: flex;
   align-items: center;
-  background: #1f1f1f;
-  border-radius: 4px;
+  border-radius: 8px;
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: border-color 0.3s ease;
 }
 
-.input-icon input {
+.input-icon .icon-left {
+  background-color: var(--color-magenta-secundario);
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-texto-blanco);
+}
+
+.input-field {
   flex: 1;
-  padding: 0.75rem;
-  background: none;
-  color: white;
+  padding: 0.6rem 0.75rem;
+  background: transparent;
   border: none;
+  outline: none;
+  color: var(--color-texto-blanco);
+  font-size: 0.95rem;
 }
 
-.icon {
-  padding: 0 0.75rem;
-  color: #ff0ba7;
+.input-field::placeholder {
+  color: rgba(255, 255, 255, 0.6);
 }
 
-.icon--right {
+.input-icon .icon-right {
   margin-left: auto;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  color: var(--color-gris-claro);
+  transition: color 0.2s ease;
 }
 
-.btn--primary {
-  background-color: #ff0ba7;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 2rem;
-  font-weight: bold;
+.input-icon .icon-right:hover {
+  color: var(--color-texto-blanco);
+}
+
+.clickable {
+  user-select: none;
+}
+
+.input-icon:focus-within {
+  border-color: var(--color-texto-blanco);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--color-texto-blanco);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-link {
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
+  color: #ddd;
+  text-align: right;
+  display: block;
   cursor: pointer;
-  width: 100%;
+  transition: color 0.2s ease;
 }
 
-.legal {
-  font-size: 0.75rem;
-  text-align: center;
-  margin-top: 1rem;
-  color: #999;
+.form-link:hover {
+  color: var(--color-texto-blanco);
 }
 
-.dots {
-  margin-top: 1rem;
+.button-container {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  align-items: center;
+  margin-top: 4rem;
+ margin-bottom: 2rem;
 }
 
-.dot {
-  width: 12px;
-  height: 12px;
-  background: #333;
-  border-radius: 50%;
+.btnn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  color: var(--color-texto-blanco);
+  z-index: 1;
+  background: linear-gradient(120deg, var(--color-rosa-principal), var(--color-magenta-secundario), var(--color-magenta-claro));
+  background-size: 300% 300%;
+  animation: gradientFlow 6s ease infinite;
+  box-shadow: 0 6px 16px rgba(255, 45, 149, 0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn--primary:hover {
+  transform: scale(1.03) rotateX(4deg) rotateY(-4deg);
+  box-shadow: 0 12px 28px rgba(255, 45, 149, 0.5);
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

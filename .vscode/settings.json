@@ -1,0 +1,25 @@
+{
+  "workbench.colorTheme": "Bluloco Dark",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 14,
+  "editor.lineHeight": 22,
+  "editor.minimap.enabled": true,
+  "editor.cursorBlinking": "solid",
+  "editor.renderWhitespace": "boundary",
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+
+
+
+  // Magical Brackets ✨
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.guides.bracketPairsHorizontal": "active",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+
+  // Calm Prettier
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "none"
+}

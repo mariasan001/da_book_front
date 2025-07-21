@@ -1,0 +1,115 @@
+{
+  "version": "6.0",
+  "nxVersion": "21.3.0",
+  "pathMappings": {
+    "@/*": [
+      "./src/*"
+    ]
+  },
+  "nxJsonPlugins": [],
+  "fileMap": {
+    "projectFileMap": {},
+    "nonProjectFiles": [
+      {
+        "file": ".gitignore",
+        "hash": "1867017717006394117"
+      },
+      {
+        "file": "README.md",
+        "hash": "10766794746169900117"
+      },
+      {
+        "file": "eslint.config.mjs",
+        "hash": "11349616980964601162"
+      },
+      {
+        "file": "next.config.ts",
+        "hash": "17157214668998829023"
+      },
+      {
+        "file": "package-lock.json",
+        "hash": "2764928447819949966"
+      },
+      {
+        "file": "package.json",
+        "hash": "830516148947181695"
+      },
+      {
+        "file": "public/file.svg",
+        "hash": "15617830351863523835"
+      },
+      {
+        "file": "public/globe.svg",
+        "hash": "9134466864871335697"
+      },
+      {
+        "file": "public/next.svg",
+        "hash": "8300767200008744458"
+      },
+      {
+        "file": "public/vercel.svg",
+        "hash": "3007623926711696394"
+      },
+      {
+        "file": "public/window.svg",
+        "hash": "16677869292061012332"
+      },
+      {
+        "file": "src/app/favicon.ico",
+        "hash": "9157999678830540297"
+      },
+      {
+        "file": "src/app/globals.css",
+        "hash": "1792142637981748220"
+      },
+      {
+        "file": "src/app/layout.tsx",
+        "hash": "8728365707279376771"
+      },
+      {
+        "file": "src/app/login/iniciar-sesion/components/LoginForm.tsx",
+        "hash": "9447078233535309822"
+      },
+      {
+        "file": "src/app/login/iniciar-sesion/components/LoginLayout.tsx",
+        "hash": "10296287852788367489"
+      },
+      {
+        "file": "src/app/login/iniciar-sesion/components/LoginPanel.tsx",
+        "hash": "15095489538473704586"
+      },
+      {
+        "file": "src/app/login/iniciar-sesion/components/styles/login-form.css",
+        "hash": "11289299908622305267"
+      },
+      {
+        "file": "src/app/login/iniciar-sesion/components/styles/login-layout.css",
+        "hash": "7737385722046437721"
+      },
+      {
+        "file": "src/app/login/iniciar-sesion/components/styles/login-panel.css",
+        "hash": "6867363361001458075"
+      },
+      {
+        "file": "src/app/login/iniciar-sesion/page.tsx",
+        "hash": "14016448404161709106"
+      },
+      {
+        "file": "src/app/middleware.ts",
+        "hash": "3244421341483603138"
+      },
+      {
+        "file": "src/app/page.module.css",
+        "hash": "8183750112266905147"
+      },
+      {
+        "file": "src/app/page.tsx",
+        "hash": "7264485524454547246"
+      },
+      {
+        "file": "tsconfig.json",
+        "hash": "4965826641429490352"
+      }
+    ]
+  }
+}

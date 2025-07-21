@@ -1,79 +1,89 @@
-/* Fondo glass sobre toda la pantalla */
-.glass-wrapper {
- margin: 10px;
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
+
+
 .glass-wrapper {
   position: relative;
   width: 100%;
-  height: 100vh;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  height: 96vh;
+  margin: 2%;
+  /* Fondo translúcido más evidente */
+  background: rgba(21, 20, 20, 0.12);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 40px rgba(255, 0, 204, 0.1), 0 8px 32px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px;
-  border: 10px;
+  /* Forma inclinada abajo */
+  clip-path: polygon(0% 0%, 100% 0%, 87% 100%, 0% 100%);
 }
+
+
 /* Luz principal */
 .blur-shape {
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    #ff00c8 0%,     /* Fiusha fuerte al centro */
+    #e600a1 30%,    /* Fiusha oscuro intermedio */
+    transparent 80% /* Degradado más largo */
+  );
+  filter: blur(220px) brightness(2.5) saturate(1.8); /* Más blur y brillo */
+  opacity: 0.7; /* Un poco más visible */
+  mix-blend-mode: screen;
+  z-index: 0;
+  animation: auroraWaves 8s ease-in-out infinite alternate;
+}
+
+.blur-shape.alt {
+  position: absolute;
+  top: 65%;
+  left: 25%;
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  filter: blur(180px) brightness(1.6);
-  opacity: 0.5;
+
+  background: radial-gradient(
+    circle at center,
+    #E62D87 0%,       /* Fiusha intenso */
+    #c6008f 40%,      /* Fiusha profundo */
+    transparent 90%   /* Difuminado amplio */
+  );
+  filter: blur(240px) brightness(2.8) saturate(2);
+  opacity: 0.65;
+  mix-blend-mode: screen;
+  animation: auroraWaves 10s ease-in-out infinite alternate;
+  animation-delay: 3s;
   z-index: 0;
-  background: radial-gradient(circle at center, #e40fa1 0%, #363636 40%, transparent 100%);
-  animation: auroraWaves 8s ease-in-out infinite alternate,
-             auroraColors 15s ease-in-out infinite alternate;
-  mix-blend-mode: screen;
 }
-
-
-.blur-shape.alt {
-  top: 65%;
-  left: 25%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle at center, #000000 0%, #a00882 50%, transparent 100%);
-  animation: auroraWaves 10s ease-in-out infinite alternate,
-             auroraColors 20s ease-in-out infinite alternate;
-  animation-delay: 3s, 5s;
-  mix-blend-mode: screen;
-  filter: blur(180px) brightness(1.6);
-  opacity: 0.5;
-  border-radius: 50%;
-  position: absolute;
-}
-
 .blur-shape.extra {
+  position: absolute;
   top: 25%;
   left: 75%;
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle at center, #f72585 0%, #b2025d 60%, transparent 100%);
-  animation: auroraWaves 12s ease-in-out infinite alternate,
-             auroraColors 18s ease-in-out infinite alternate;
-  animation-delay: 5s, 2s;
-  mix-blend-mode: screen;
-  filter: blur(180px) brightness(1.6);
-  opacity: 0.5;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
-  position: absolute;
+
+  background: radial-gradient(
+    circle at center,
+    #550028 0%,       /* Negro con toque de fiusha */
+    #89004f 30%,      /* Fiusha oscuro profundo */
+    #8b044a 50%,      /* Rosa quemado */
+    transparent 90%
+  );
+
+  filter: blur(260px) brightness(1.2) saturate(1.3);
+  opacity: 0.4;
+  mix-blend-mode: screen;
+  animation: auroraWaves 12s ease-in-out infinite alternate;
+  animation-delay: 5s;
+  z-index: 0;
 }
 
 @keyframes auroraWaves {
@@ -97,61 +107,58 @@
   }
 }
 
-
-@keyframes auroraColors {
-  0% {
-    filter: blur(180px) brightness(2) hue-rotate(0deg);
-  }
-  25% {
-    filter: blur(180px) brightness(2.2) hue-rotate(90deg);
-  }
-  50% {
-    filter: blur(180px) brightness(2.5) hue-rotate(180deg);
-  }
-  75% {
-    filter: blur(180px) brightness(2.2) hue-rotate(270deg);
-  }
-  100% {
-    filter: blur(180px) brightness(2) hue-rotate(360deg);
-  }
-}
-
-
-/* Panel más limpio */
 .login-panel {
   position: relative;
-  z-index: 1;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08); /* más claro que el fondo */
+  backdrop-filter: blur(25px) saturate(160%);
+  -webkit-backdrop-filter: blur(25px) saturate(160%);
   padding: 2rem;
   color: white;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.3),                     /* sombra base */
+    0 0 40px rgba(255, 0, 204, 0.08);                  /* halo fiusha sutil */
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
 .login-panel__top {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end; /* alinea todo a la derecha */
   margin-bottom: 1.5rem;
+}
+
+.login-tabs {
+  display: flex;
+  gap: 1rem; /* espacio entre los dos botones */
 }
 
 .tab {
   background: transparent;
   border: none;
-  color: white;
-  font-weight: bold;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 400;
+  font-size: 0.95rem;
   cursor: pointer;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1.5rem; /* más espacio interno */
+  transition: all 0.3s ease;
+  
+}
+
+.tab:hover {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 .tab--active {
-  border-bottom: 2px solid white;
+  border: 2px solid rgba(255, 255, 255, 0.85); /* borde más notorio */
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  background: transparent;
+  padding: 0.7rem 1.5rem;
 }
+
 
 .user {
   display: flex;
@@ -167,15 +174,37 @@
 }
 
 .btn--outline {
-  background: transparent;
-  border: 1px solid white;
-  padding: 0.5rem 1rem;
-  color: white;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgb(255, 255, 255);
+  color: #ffffff;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 12px;
   cursor: pointer;
-  border-radius: 8px;
-  transition: 0.3s;
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 0 transparent;
 }
 
 .btn--outline:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 0, 180, 0.4);
+  box-shadow: 0 0 12px rgba(255, 0, 180, 0.2);
+  transform: translateY(-1px);
+}
+
+.login-panel__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  gap: 1rem;
+}
+.user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 88%;
 }
