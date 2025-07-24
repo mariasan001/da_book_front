@@ -1,0 +1,125 @@
+:root {
+  --fucsia: #ff1dbf;
+  --gris-suave: #ccc;
+  --gris-texto: #444;
+}
+
+.registro-formulario {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centramos todo */
+  text-align: center;
+}
+
+
+.registro-titulo {
+  margin-top: 30px !important;
+  font-size: 1.4rem !important;
+  font-weight: 680 !important;
+  text-align: center;
+  color: var(--label-color); /* ya adaptado al modo claro/oscuro */
+  line-height: 1.2;
+}
+
+.subtitulo {
+  font-size: 13px;
+  margin-bottom: 3rem;
+  color: var(--label-color);
+  max-width: 90%;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.input-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--label-color);
+  text-align: left;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--input-bg);
+  backdrop-filter: blur(16px);
+  border: 1.5px solid var(--input-border);
+}
+
+.icon-box {
+  min-width: 44px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--icon-bg);
+  border-right: 1.5px solid var(--input-border);
+  color: white;
+}
+
+.input-wrapper input {
+  flex: 1;
+  padding: 0.65rem .8rem;
+  font-size: 13px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text-color);
+}
+
+.registro-formulario.oscuro {
+  --input-bg: rgba(255, 255, 255, 0.05);
+  --input-border: rgba(255, 255, 255, 0.15);
+  --icon-bg: var(--fucsia);
+  --label-color: #ddd;
+  --text-color: #fff;
+}
+
+.registro-formulario.claro {
+  --input-bg: rgba(255, 255, 255, 0.6);
+  --input-border: rgba(0, 0, 0, 0.08);
+  --icon-bg: var(--fucsia);
+  --label-color: var(--gris-texto);
+  --text-color: #111;
+}
+
+.intereses-label {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--label-color);
+}
+
+.boton-submit {
+  margin-top: 2rem;
+  padding: 0.9rem 2rem;
+  background-color: var(--fucsia);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.boton-submit:hover {
+  transform: scale(1.05);
+}

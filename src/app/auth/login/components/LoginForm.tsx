@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import './styles/login-form.css';
 import { PenLine, Lock, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
@@ -16,17 +15,7 @@ export default function LoginForm({ modoRegistro }: Props) {
 
   return (
     <section className={`login-form transition-form ${modoRegistro ? 'registro' : 'login'}`}>
-      {/* Logo */}
-      <div className="login-form__logo">
-        <Image
-          src="/img/logo-blanco.png"
-          alt="DA Book logo"
-          width={90}
-          height={40}
-          priority
-        />
-      </div>
-
+   
       {/* Encabezado */}
       <FormHeader
         title="El espacio donde tus ideas cobran vida"

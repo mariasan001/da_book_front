@@ -1,0 +1,43 @@
+.etiquetas-wrapper {
+  overflow: hidden;
+  width: 100%;
+  padding: 0.5rem 0;
+  position: relative;
+}
+
+.etiquetas-contenedor-auto {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: scrollLoop 40s linear infinite;
+}
+
+@keyframes scrollLoop {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.etiqueta {
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, var(--color1), var(--color2));
+  color: white;
+  border-radius: 10px;
+  padding: 0.45rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.etiqueta:hover {
+  transform: scale(1.05);
+}
+
+.etiqueta.activa {
+  box-shadow: 0 0 15px var(--color1);
+  border: 2px solid var(--color2);
+}

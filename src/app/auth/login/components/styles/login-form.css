@@ -6,15 +6,12 @@
   justify-content: flex-start;
 }
 
-.login-form__logo {
-  width: 100px;
-  margin-bottom: 10rem;
-  margin-top: 0;
-}
+
 
 .login-form__title {
   font-size: 1.6rem;
   font-weight: 900;
+  margin-top: 100px;
   font-family: var(--fuente-principal) !important;
 }
 

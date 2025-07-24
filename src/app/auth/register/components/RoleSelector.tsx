@@ -1,9 +1,14 @@
 'use client';
 
 import Image from 'next/image';
-import './styles/register-form.css';
+import './styles/role_selector.css';
 
-export default function RoleSelector() {
+interface Props {
+  onSeleccionarAlumno: () => void;
+  onSeleccionarArtista: () => void;
+}
+
+export default function RoleSelector({ onSeleccionarAlumno, onSeleccionarArtista }: Props) {
   return (
     <section className="register-form">
       <div className="register-form__header">
@@ -12,9 +17,9 @@ export default function RoleSelector() {
       </div>
 
       <div className="register-form__cards">
-        <div className="register-card">
+        <div className="register-card" onClick={onSeleccionarAlumno}>
           <div className="register-card__icon">
-            <Image src="/img/icono-bombilla.png" alt="Aprender" width={60} height={60} />
+            <Image src="/img/cohete.png" alt="Aprender" width={60} height={60} />
           </div>
           <h3>Quiero Aprender</h3>
           <p>
@@ -22,9 +27,9 @@ export default function RoleSelector() {
           </p>
         </div>
 
-        <div className="register-card">
+        <div className="register-card" onClick={onSeleccionarArtista}>
           <div className="register-card__icon">
-            <Image src="/img/icono-clap.png" alt="Inspirar" width={60} height={60} />
+            <Image src="/img/microfono.png" alt="Inspirar" width={60} height={60} />
           </div>
           <h3>Quiero Inspirar</h3>
           <p>

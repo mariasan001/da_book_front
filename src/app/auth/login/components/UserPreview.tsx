@@ -10,8 +10,8 @@ export default function UserPreview() {
           className="user__avatar"
           src="/img/fondo de pantalla.jpg"
           alt="Lucía Oca"
-          width={48}
-          height={48}
+          width={120}
+          height={50}
           priority
         />
         <div className="user__info">

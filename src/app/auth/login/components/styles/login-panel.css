@@ -41,7 +41,7 @@
   background: radial-gradient(
     circle at center,
     #ff00c8 0%,     /* Fiusha fuerte al centro */
-    #e600a1 30%,    /* Fiusha oscuro intermedio */
+    #0f0e0f 30%,    /* Fiusha oscuro intermedio */
     transparent 80% /* Degradado más largo */
   );
   filter: blur(220px) brightness(2.5) saturate(1.8); /* Más blur y brillo */
@@ -61,8 +61,8 @@
 
   background: radial-gradient(
     circle at center,
-    #E62D87 0%,       /* Fiusha intenso */
-    #c6008f 40%,      /* Fiusha profundo */
+    #242323 0%,       /* Fiusha intenso */
+    #b0038d 40%,      /* Fiusha profundo */
     transparent 90%   /* Difuminado amplio */
   );
   filter: blur(240px) brightness(2.8) saturate(2);
@@ -72,6 +72,7 @@
   animation-delay: 3s;
   z-index: 0;
 }
+
 .blur-shape.extra {
   position: absolute;
   top: 25%;
@@ -82,9 +83,9 @@
 
   background: radial-gradient(
     circle at center,
-    #550028 0%,       /* Negro con toque de fiusha */
+    #0b0508 0%,       /* Negro con toque de fiusha */
     #89004f 30%,      /* Fiusha oscuro profundo */
-    #8b044a 50%,      /* Rosa quemado */
+    #010101 50%,      /* Rosa quemado */
     transparent 90%
   );
 
@@ -218,4 +219,34 @@
   justify-content: space-between;
   align-items: center;
   width: 88%;
+}
+.login-panel.artist-mode {
+  background: rgba(171, 171, 171, 0.3); /* más transparencia */
+  backdrop-filter: blur(20px) saturate(160%);
+  mix-blend-mode: screen;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 0 60px rgba(255, 0, 204, 0.08),
+    0 0 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+}
+.blur-shape.white-glow {
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #ffffff 0%, #aaa 40%, transparent 80%);
+  filter: blur(140px);
+  opacity: 0.2;
+  z-index: 0;
+}
+
+
+/* Tabs en modo artista */
+.login-panel.artist-mode .tab--active {
+  border-color: rgba(255, 255, 255, 0.982);
+  background: rgba(255, 255, 255, 0);
+  color: rgb(255, 255, 255);
 }

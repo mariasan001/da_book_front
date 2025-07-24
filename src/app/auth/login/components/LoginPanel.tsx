@@ -16,7 +16,7 @@ export default function LoginPanel({ modoRegistro, onSeleccionarRegistro, onSele
       <div className="blur-shape"></div>
       <div className="blur-shape alt"></div>
 
-      <section className="login-panel">
+      <section className={`login-panel ${modoRegistro ? 'artist-mode' : ''}`}>
         <div className="login-panel__top">
           <LoginTabs
             modoRegistro={modoRegistro}

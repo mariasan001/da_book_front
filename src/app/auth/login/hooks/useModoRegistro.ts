@@ -1,32 +1,43 @@
 'use client';
+
 import { useEffect, useState } from 'react';
 
-export function useModoRegistro() {
-  const [modoRegistro, setModoRegistro] = useState(false); // Login por defecto
+// Tipos permitidos para las pantallas
+type Pantalla =
+  | 'login'
+  | 'selector'
+  | 'registroAlumno'
+  | 'registroArtista';
+
+export function usePantallaRegistro() {
+  const [pantalla, setPantalla] = useState<Pantalla>('login');
   const [apareciendo, setApareciendo] = useState(false);
 
-  const activarRegistro = () => {
-    setModoRegistro(true);
+  // Cambiar de pantalla y controlar efecto visual de aparición
+  const cambiarPantalla = (nuevaPantalla: Pantalla) => {
+    setPantalla(nuevaPantalla);
     setApareciendo(false);
     setTimeout(() => setApareciendo(true), 300);
   };
 
-  const activarLogin = () => {
-    setModoRegistro(false);
-    setApareciendo(false);
-    setTimeout(() => setApareciendo(true), 300);
-  };
+  // Métodos específicos para cada pantalla
+  const irALogin = () => cambiarPantalla('login');
+  const irASelector = () => cambiarPantalla('selector');
+  const irARegistroAlumno = () => cambiarPantalla('registroAlumno');
+  const irARegistroArtista = () => cambiarPantalla('registroArtista');
 
-  // 👇 Aquí es la clave: activar apareciendo en el primer render
+  // Activar la primera vez al montar
   useEffect(() => {
     const timeout = setTimeout(() => setApareciendo(true), 300);
     return () => clearTimeout(timeout);
   }, []);
 
   return {
-    modoRegistro,
+    pantalla,
     apareciendo,
-    activarRegistro,
-    activarLogin
+    irALogin,
+    irASelector,
+    irARegistroAlumno,
+    irARegistroArtista
   };
 }
