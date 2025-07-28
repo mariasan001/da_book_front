@@ -1,0 +1,65 @@
+.cv-invitacion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.cv-card {
+  max-width: 400px;
+  padding: 2rem;
+  background: #140F0B;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.cv-card h1 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.cv-card p {
+  font-size: .9rem;
+  color: #444;
+  margin-bottom: 2rem;
+}
+
+.cv-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cv-button,
+.cv-button-secondary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.cv-button {
+  background-color: #111;
+  color: white;
+}
+
+.cv-button:hover {
+  background-color: #333;
+}
+
+.cv-button-secondary {
+  background-color: transparent;
+  color: #555;
+  border: 1px solid #ccc;
+}
+
+.cv-button-secondary:hover {
+  background-color: #f2f2f2;
+}

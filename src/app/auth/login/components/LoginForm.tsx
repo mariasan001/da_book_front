@@ -3,6 +3,7 @@
 import './styles/login-form.css';
 import { PenLine, Lock, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation'; // 
 import IconInput from '../components/IconInput';
 import FormHeader from '../components/FormHeader';
 
@@ -12,10 +13,14 @@ interface Props {
 
 export default function LoginForm({ modoRegistro }: Props) {
   const [visible, setVisible] = useState(false);
+  const router = useRouter(); // 
+
+  const manejarInicio = () => {
+    router.push('/dashboard'); // 
+  };
 
   return (
     <section className={`login-form transition-form ${modoRegistro ? 'registro' : 'login'}`}>
-   
       {/* Encabezado */}
       <FormHeader
         title="El espacio donde tus ideas cobran vida"
@@ -48,7 +53,13 @@ export default function LoginForm({ modoRegistro }: Props) {
 
         {/* Botón */}
         <div className="button-container">
-          <button className="btnn btn--primary">Comencemos a explorar</button>
+          <button
+            type="button"
+            className="btnn btn--primary"
+            onClick={manejarInicio} // 👈 Evento de navegación
+          >
+            Comencemos a explorar
+          </button>
         </div>
       </form>
     </section>

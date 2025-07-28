@@ -1,0 +1,43 @@
+.sidebar {
+  width: 70px;
+  background-color: #28282C;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 1rem 0;
+   position: relative; /* o simplemente elimina el position si no es necesario */
+}
+
+.sidebar-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.logo-img {
+  width: 28px;
+  height: 17px;
+}
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.sidebar-footer {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+.sidebar-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #f0f0f0;
+}

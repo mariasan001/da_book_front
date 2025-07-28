@@ -1,0 +1,8 @@
+.layout-container {
+  flex: 1;
+  padding: 2rem;
+  background-color: #18181B;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  min-height: calc(100vh - 60px); /* considera el height del topbar */
+}

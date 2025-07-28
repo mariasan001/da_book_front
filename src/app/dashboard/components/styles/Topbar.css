@@ -1,0 +1,51 @@
+.topbar {
+  background-color: #18181B;
+  color: white;
+  height: 60px;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #2e2e2e;
+}
+
+.topbar-left h1 {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.topbar-left .nombre {
+  color: #d81b60;
+  margin-left: 4px;
+}
+
+.topbar-left .fecha {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-top: 2px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-salir {
+  background-color: #d81b60;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+}

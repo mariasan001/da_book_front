@@ -6,7 +6,7 @@ import LoginForm from './LoginForm';
 import LoginPanel from './LoginPanel';
 import './styles/login-layout.css';
 import { usePantallaRegistro } from '../hooks/useModoRegistro';
-import LogoEsquina from '@/app/components/LogoEsquina';
+import LogoEsquina from '@/components/logo/LogoEsquina';
 
 export default function LoginLayout() {
   // Hook personalizado que controla qué pantalla mostrar (login, selector o registro)

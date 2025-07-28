@@ -1,0 +1,27 @@
+.sidebar {
+  width: 220px;
+  background-color: #111;
+  color: white;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.menu-item:hover {
+  color: white;
+}
