@@ -1,0 +1,36 @@
+.editor-canvas {
+  flex: 1;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 2rem;
+  height: 85vh;
+  overflow-y: auto;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid rgb(83, 83, 83);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Estilo del texto placeholder */
+.editor-placeholder {
+  color: #777;
+  font-size: 0.95rem;
+  text-align: center;
+  max-width: 300px;
+  line-height: 1.4;
+  opacity: 0.6;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.color-preview {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}

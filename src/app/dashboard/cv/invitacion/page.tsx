@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Lottie from 'lottie-react';
 import './cv-dinamico-invitacion.css';
 
 export default function CvDinamicoInvitacion() {
   const [animationData, setAnimationData] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     fetch('/animation/cv_dinamic.json')
@@ -14,9 +16,13 @@ export default function CvDinamicoInvitacion() {
       .catch(err => console.error('Error cargando animación', err));
   }, []);
 
+  const handleClick = () => {
+    router.push('/dashboard/cv/crear');
+  };
+
   return (
     <section className="cv-invitacion">
-      <div className="cv-card">
+      <div className="cv-card clickable" onClick={handleClick}>
         <div className="cv-animation">
           {animationData && (
             <Lottie

@@ -1,0 +1,6 @@
+.crear-cv-layout {
+  display: flex;
+  flex-direction: row;
+ 
+  width: 100%;
+}

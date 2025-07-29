@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import confetti from 'canvas-confetti';
-import CvDinamicoInvitacion from './CvDinamicoInvitacion';
+import CvDinamicoInvitacion from './cv/invitacion/page';
 
 export default function DashboardPage() {
   useEffect(() => {

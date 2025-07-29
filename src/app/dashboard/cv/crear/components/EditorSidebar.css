@@ -1,0 +1,104 @@
+.editor-panel {
+  background: #111;
+  color: white;
+  padding: 24px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+.panel-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.panel-subtitle {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 60px;
+}
+
+.panel-section {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #ccc;
+  display: block;
+}
+
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.icon-grid button {
+  width: 48px;
+  height: 48px;
+  background: #1e1e1e;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.icon-grid button:hover {
+  border: 1px solid #bc945a;
+  box-shadow: 0 0 8px #bc945a88;
+}
+
+.panel-actions {
+  margin-top: 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.btn-primary {
+  background: #bc145a;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-container .tooltip-text {
+  visibility: hidden;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 4px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* arriba del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
