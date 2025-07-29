@@ -1,13 +1,24 @@
 'use client';
+
 import './EditorSidebar.css';
 import { useEditor } from '../context/EditorContext';
+import PropertyPanel from './PropertyPanel';
 import {
-  LayoutTemplate, Minus, ArrowRight, Square,
-  RectangleHorizontal, Circle
+  LayoutTemplate,
+  Minus,
+  ArrowRight,
+  Square,
+  RectangleHorizontal,
+  Circle
 } from 'lucide-react';
 
 export default function EditorPanel() {
-  const { addElement, toggleCanvasColor, canvasColor } = useEditor();
+  const {
+    addElement,
+    selectedElement,
+    getElementById,
+    updateElement,
+  } = useEditor();
 
   return (
     <section className="editor-panel">
@@ -34,10 +45,10 @@ export default function EditorPanel() {
         <button title="Círculo" onClick={() => addElement('circulo')}>
           <Circle size={24} />
         </button>
-        {/* Botón para cambiar color de fondo */}
-        <button title="Color de fondo" onClick={toggleCanvasColor}>
-          <div className="color-preview" style={{ backgroundColor: canvasColor }} />
-        </button>
+      </div>
+
+      <div className="properties-panel">
+        <PropertyPanel />
       </div>
     </section>
   );

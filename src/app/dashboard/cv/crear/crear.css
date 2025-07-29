@@ -1,6 +1,6 @@
 .crear-cv-layout {
   display: flex;
   flex-direction: row;
- 
   width: 100%;
+  position: relative; /* 👈 Esto es la clave para ubicar paneles flotantes dentro */
 }

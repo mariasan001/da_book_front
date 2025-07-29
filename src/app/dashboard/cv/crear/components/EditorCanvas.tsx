@@ -1,7 +1,7 @@
 import './EditorCanvas.css';
 import { useEditor } from '../context/EditorContext';
-import Contenedor from './Bloques/Contenedor';
 import Linea from './Bloques/linea/Linea'; // Si ya tienes el componente de línea
+import Contenedor from './Bloques/contenedor/Contenedor';
 
 export default function EditorCanvas() {
   const { elements } = useEditor();

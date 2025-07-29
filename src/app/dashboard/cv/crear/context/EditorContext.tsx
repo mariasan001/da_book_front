@@ -83,11 +83,11 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         elements,
         addElement,
         selectedElement,
-        selectElement,
+        selectElement, // ✅ clave para selección
         updateElementStyle,
         updateElement,
         deleteElement,
-        duplicateElement, // 👈 AÑADIDO AQUÍ
+        duplicateElement,
         getElementById,
       }}
     >

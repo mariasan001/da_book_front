@@ -4,7 +4,8 @@ import { EditorProvider } from './context/EditorContext';
 import { ContextMenuProvider } from './context/ContextMenuContext';
 import EditorCanvas from './components/EditorCanvas';
 import EditorPanel from './components/Sidebar';
-import ContextMenu from './components/ContextMenu'; // ✅ ahora sí, mismo nombre y sin conflictos
+import ContextMenu from './components/ContextMenu';
+import PropertyPanel from './components/PropertyPanel'; // 👈 Import del panel de propiedades
 
 import './crear.css';
 
@@ -16,7 +17,7 @@ export default function CrearCV() {
           <EditorPanel />
           <EditorCanvas />
         </div>
-        <ContextMenu /> {/* ✅ menú contextual visual */}
+        <ContextMenu />
       </EditorProvider>
     </ContextMenuProvider>
   );

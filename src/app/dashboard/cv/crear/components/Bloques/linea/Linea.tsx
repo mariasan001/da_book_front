@@ -1,13 +1,12 @@
 'use client';
 
-import { useEffect } from 'react';
-import { LineaPanel } from './components/LineaPanel';
 import { RotationHandle } from './components/RotationHandle';
 import { updateElementStyle } from './utils/updateElementHelpers';
 import { useLineaLogic } from './hook/useLineaLogic';
 import { useLineaPanel } from './hook/useLineaPanel';
 import { useAutoShowPanel } from './hook/useAutoShowPanel'; // 👈 Importas tu nuevo hook
 import './Linea.css';
+import LineaPanel from './components/LineaPanel';
 
 interface Props {
   id: string;
