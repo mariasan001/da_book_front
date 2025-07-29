@@ -12,3 +12,16 @@
   color: #ffffff;
   font-size: 14px;
 }
+.property-panel-embedded button {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.property-panel-embedded button.active-btn {
+  background: #ddd;
+  font-weight: bold;
+}

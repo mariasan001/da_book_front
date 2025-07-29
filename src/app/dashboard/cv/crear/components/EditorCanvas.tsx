@@ -1,7 +1,8 @@
 import './EditorCanvas.css';
 import { useEditor } from '../context/EditorContext';
-import Linea from './Bloques/linea/Linea'; // Si ya tienes el componente de línea
+import Linea from './Bloques/linea/Linea';
 import Contenedor from './Bloques/contenedor/Contenedor';
+import Titulo from './Bloques/titulo/Titulo'; // 👈 Importa tu nuevo componente
 
 export default function EditorCanvas() {
   const { elements } = useEditor();
@@ -19,7 +20,8 @@ export default function EditorCanvas() {
               return <Contenedor key={el.id} id={el.id} />;
             case 'linea':
               return <Linea key={el.id} id={el.id} />;
-            // Aquí puedes agregar más tipos
+            case 'titulo': // 👈 Agrega esto
+              return <Titulo key={el.id} id={el.id} />;
             default:
               return null;
           }

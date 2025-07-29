@@ -5,7 +5,6 @@ import { ContextMenuProvider } from './context/ContextMenuContext';
 import EditorCanvas from './components/EditorCanvas';
 import EditorPanel from './components/Sidebar';
 import ContextMenu from './components/ContextMenu';
-import PropertyPanel from './components/PropertyPanel'; // 👈 Import del panel de propiedades
 
 import './crear.css';
 

@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tiptap/react": "^3.0.7",
+    "@tiptap/starter-kit": "^3.0.7",
     "canvas-confetti": "^1.9.3",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.525.0",
