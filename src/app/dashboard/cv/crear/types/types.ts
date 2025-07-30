@@ -1,37 +1,48 @@
+import type { CSSProperties } from 'react';
+
 // Tipos disponibles de elementos en el editor
 export type TipoElemento =
   | 'contenedor'
   | 'linea'
   | 'texto'
   | 'imagen'
+  | 'mosaico'   // 🧩 tipo independiente para múltiples imágenes
+  | 'enlace'
+  | 'video'
   | 'flecha'
   | 'titulo'
-  | 'icono'; // ✅ Agregado 'icono'
+  | 'icono';
 
 // Elemento base del editor
 export interface ElementoCV {
   id: string;
   type: TipoElemento;
-  content?: string;
 
-  // Estilos dinámicos aplicables a cada tipo
-  style?: Record<string, string | number>;
+  // ✅ Ahora permite string (para imagen normal) o string[] (para mosaico)
+  content?: string | string[];
 
-  // Tamaño del elemento (opcional)
+  // ✅ Estilos CSS aplicables al elemento
+  style?: CSSProperties;
+
+  // Tamaño (opcional)
   width?: number;
   height?: number;
 
-  // Posición en el canvas
+  // Posición absoluta
   x?: number;
   y?: number;
 
-  // Rotación opcional
+  // Rotación
   rotation?: number;
 
   // Icono específico (solo si type === 'icono')
-  iconName?: string; // ✅ Agregado
+  iconName?: string;
 
-  // Acciones para menú contextual (opcional)
+  // ✅ Props específicas para mosaico
+  columns?: number;
+  spacing?: number;
+
+  // Acciones para el menú contextual (opcional)
   actions?: {
     label: string;
     action: () => void;
@@ -43,18 +54,15 @@ export interface EditorContextType {
   elements: ElementoCV[];
   selectedElement: string | null;
 
-  // Agregar nuevo elemento (con props extra opcionales)
   addElement: (
     type: ElementoCV['type'],
-    extraProps?: Partial<ElementoCV> // ✅ Para iconName, etc.
+    extraProps?: Partial<ElementoCV>
   ) => void;
 
-  // Selección y edición
   selectElement: (id: string) => void;
   updateElementStyle: (prop: string, value: string | number) => void;
   updateElement: (id: string, updates: Partial<ElementoCV>) => void;
 
-  // Manejo de elementos
   deleteElement: (id: string) => void;
   duplicateElement: (id: string) => void;
   getElementById: (id: string) => ElementoCV | undefined;

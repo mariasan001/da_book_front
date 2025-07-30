@@ -1,0 +1,26 @@
+.mosaico-container {
+  display: grid;
+  padding: 8px;
+  background-color: #f0f0f0;
+  border: 1px dashed #ccc;
+  border-radius: 8px;
+  position: absolute;
+}
+
+.mosaico-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.upload-button {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  grid-column: 1 / -1; /* para ocupar todas las columnas */
+}

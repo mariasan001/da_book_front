@@ -11,25 +11,16 @@ export default function PropertyPanel() {
 
   const element = getElementById(selectedElement);
   if (!element) return null;
+  const safeParse = (val: string | number | undefined, defaultVal: number) => {
+    return typeof val === 'string' ? parseInt(val) : val ?? defaultVal;
+  };
 
   const bgColor =
     typeof element.style?.backgroundColor === 'string'
       ? element.style.backgroundColor
       : '#000000';
 
-  const fontSize = element.style?.fontSize || '24px';
-  const fontWeight = element.style?.fontWeight || 'normal';
-  const fontStyle = element.style?.fontStyle || 'normal';
-  const textAlign = element.style?.textAlign || 'left';
-
-  const height = element.height || 2;
-  const borderStyle = (element.style?.borderStyle || 'solid') as
-    | 'solid'
-    | 'dashed';
-  const borderRadius = (element.style?.borderRadius || '0px') as '0px' | '50px';
-  type StyleUpdate = Record<string, string | number>;
-
-  const updateStyle = (newStyle: StyleUpdate) => {
+  const updateStyle = (newStyle: Record<string, string | number>) => {
     updateElement(selectedElement, {
       style: {
         ...element.style,
@@ -60,12 +51,12 @@ export default function PropertyPanel() {
             onChange={(color) => updateStyle({ backgroundColor: color })}
           />
 
-          <label style={{ display: 'block', marginTop: 12 }}>📏 Grosor:</label>
+          <label>📏 Grosor:</label>
           <input
             type="range"
             min={1}
             max={20}
-            value={height}
+            value={element.height || 2}
             onChange={(e) =>
               updateElement(selectedElement, {
                 height: parseInt(e.target.value)
@@ -73,25 +64,21 @@ export default function PropertyPanel() {
             }
             style={{ width: '100%' }}
           />
-          <span>{height}px</span>
+          <span>{element.height || 2}px</span>
 
-          <label style={{ display: 'block', marginTop: 12 }}>🧵 Estilo:</label>
+          <label>🧵 Estilo:</label>
           <select
-            value={borderStyle}
+            value={element.style?.borderStyle || 'solid'}
             onChange={(e) => updateStyle({ borderStyle: e.target.value })}
-            style={{ width: '100%' }}
           >
             <option value="solid">Sólida</option>
             <option value="dashed">Punteada</option>
           </select>
 
-          <label style={{ display: 'block', marginTop: 12 }}>
-            🔘 Terminación:
-          </label>
+          <label>🔘 Terminación:</label>
           <select
-            value={borderRadius}
+            value={element.style?.borderRadius || '0px'}
             onChange={(e) => updateStyle({ borderRadius: e.target.value })}
-            style={{ width: '100%' }}
           >
             <option value="0px">Cuadrada</option>
             <option value="50px">Redonda</option>
@@ -99,275 +86,330 @@ export default function PropertyPanel() {
         </>
       )}
 
-     {element.type === 'titulo' && (
-  <>
-    <h4>✏️ Estilo del Título</h4>
+      {/* ✏️ TÍTULO */}
+      {element.type === 'titulo' && (
+        <>
+          <h4>✏️ Estilo del Título</h4>
 
-    {/* 🎨 Color */}
-    <label>🎨 Color:</label>
-    <HexColorPicker
-      color={typeof element.style?.color === 'string' ? element.style.color : '#000000'}
-      onChange={(color) =>
+          <label>🎨 Color:</label>
+          <HexColorPicker
+            color={element.style?.color || '#000000'}
+            onChange={(color) => updateStyle({ color })}
+          />
+
+          <label>📏 Tamaño:</label>
+          <input
+            type="number"
+            min={10}
+            max={100}
+            value={safeParse(element.style?.fontSize, 32)}
+            onChange={(e) =>
+              updateStyle({ fontSize: parseInt(e.target.value) })
+            }
+          />
+
+          <label>🅱️ Peso:</label>
+          <select
+            value={element.style?.fontWeight || 'bold'}
+            onChange={(e) => updateStyle({ fontWeight: e.target.value })}
+          >
+            <option value="normal">Normal</option>
+            <option value="bold">Negrita</option>
+            <option value="lighter">Ligero</option>
+          </select>
+
+          <label>🔠 Alineación:</label>
+          <select
+            value={element.style?.textAlign || 'left'}
+            onChange={(e) => updateStyle({ textAlign: e.target.value })}
+          >
+            <option value="left">Izquierda</option>
+            <option value="center">Centro</option>
+            <option value="right">Derecha</option>
+          </select>
+
+          <label>✍️ Cursiva:</label>
+          <select
+            value={element.style?.fontStyle || 'normal'}
+            onChange={(e) => updateStyle({ fontStyle: e.target.value })}
+          >
+            <option value="normal">No</option>
+            <option value="italic">Sí</option>
+          </select>
+
+          <label>🔁 Rotación:</label>
+          <input
+            type="range"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value)
+              })
+            }
+          />
+          <input
+            type="number"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value)
+              })
+            }
+            style={{ width: '100%', marginTop: 4 }}
+          />
+          <span>{element.rotation || 0}°</span>
+        </>
+      )}
+
+      {/* 📝 TEXTO */}
+      {element.type === 'texto' && (
+        <>
+          <h4>📝 Estilo del Texto</h4>
+
+          <label>🎨 Color del texto:</label>
+          <HexColorPicker
+            color={element.style?.color || '#000000'}
+            onChange={(color) => updateStyle({ color })}
+          />
+
+          <label>📏 Tamaño:</label>
+          <input
+            type="number"
+            min={10}
+            max={100}
+            value={parseInt(String(element.style?.fontSize || '16'))}
+            onChange={(e) =>
+              updateStyle({ fontSize: parseInt(e.target.value) })
+            }
+          />
+
+          <label>🅱️ Peso:</label>
+          <select
+            value={element.style?.fontWeight || 'normal'}
+            onChange={(e) => updateStyle({ fontWeight: e.target.value })}
+          >
+            <option value="normal">Normal</option>
+            <option value="bold">Negrita</option>
+            <option value="lighter">Ligero</option>
+          </select>
+
+          <label>✍️ Cursiva:</label>
+          <select
+            value={element.style?.fontStyle || 'normal'}
+            onChange={(e) => updateStyle({ fontStyle: e.target.value })}
+          >
+            <option value="normal">No</option>
+            <option value="italic">Sí</option>
+          </select>
+
+          <label>🔠 Alineación:</label>
+          <select
+            value={element.style?.textAlign || 'left'}
+            onChange={(e) => updateStyle({ textAlign: e.target.value })}
+          >
+            <option value="left">Izquierda</option>
+            <option value="center">Centro</option>
+            <option value="right">Derecha</option>
+          </select>
+
+          <label>✏️ Contenido:</label>
+          <textarea
+            value={element.content || ''}
+            onChange={(e) =>
+              updateElement(selectedElement, { content: e.target.value })
+            }
+            rows={5}
+            style={{ width: '100%' }}
+          />
+
+          <label>🔁 Rotación:</label>
+          <input
+            type="range"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value)
+              })
+            }
+          />
+          <input
+            type="number"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value)
+              })
+            }
+            style={{ width: '100%', marginTop: 4 }}
+          />
+          <span>{element.rotation || 0}°</span>
+        </>
+      )}
+
+      {/* ⭐ ÍCONO */}
+      {element.type === 'icono' && (
+        <>
+          <h4>⭐ Estilo del Ícono</h4>
+
+          <label>🎨 Color:</label>
+          <HexColorPicker
+            color={element.style?.color || '#000000'}
+            onChange={(color) => updateStyle({ color })}
+          />
+
+          <label>📏 Tamaño:</label>
+          <input
+            type="number"
+            min={8}
+            max={256}
+            value={element.width ?? 32}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                width: parseInt(e.target.value)
+              })
+            }
+          />
+          <span>{element.width ?? 32}px</span>
+
+          <label>🔁 Rotación:</label>
+          <input
+            type="range"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value)
+              })
+            }
+          />
+          <input
+            type="number"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value)
+              })
+            }
+            style={{ width: '100%', marginTop: 4 }}
+          />
+          <span>{element.rotation || 0}°</span>
+        </>
+      )}
+
+      {/* 🖼️ IMAGEN */}
+      {element.type === 'imagen' && (
+        <>
+          <h4>🖼️ Estilo de Imagen</h4>
+
+          <label>🔁 Rotación:</label>
+          <input
+            type="range"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value)
+              })
+            }
+          />
+          <input
+            type="number"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value)
+              })
+            }
+            style={{ width: '100%', marginTop: 4 }}
+          />
+          <span>{element.rotation || 0}°</span>
+
+          <label>🔘 Bordes:</label>
+          <select
+            value={element.style?.borderRadius || '0px'}
+            onChange={(e) => updateStyle({ borderRadius: e.target.value })}
+          >
+            <option value="0px">Cuadrada</option>
+            <option value="10px">Ligero</option>
+            <option value="25px">Medio</option>
+            <option value="50%">Circular</option>
+          </select>
+
+          <label>📏 Ancho:</label>
+          <input
+            type="number"
+            min={10}
+            max={1000}
+            value={element.width ?? 200}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                width: parseInt(e.target.value)
+              })
+            }
+          />
+
+          <label>📐 Alto:</label>
+          <input
+            type="number"
+            min={10}
+            max={1000}
+            value={element.height ?? 200}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                height: parseInt(e.target.value)
+              })
+            }
+          />
+        </>
+      )}
+
+      {/* 🧩 MOSAICO */}
+{element.type === 'mosaico' && (
+  <>
+    <h4>🧩 Mosaico</h4>
+
+    <label>📐 Columnas:</label>
+    <input
+      type="number"
+      min={1}
+      max={20}
+      value={element.columns || 3}
+      onChange={(e) =>
         updateElement(selectedElement, {
-          style: {
-            ...element.style,
-            color,
-          },
+          columns: parseInt(e.target.value),
         })
       }
     />
 
-    {/* 📏 Tamaño */}
-    <label>📏 Tamaño:</label>
+    <label>📐 Espaciado:</label>
     <input
       type="number"
-      min={10}
+      min={0}
       max={100}
-      value={element.style?.fontSize || 32}
+      value={element.spacing || 4}
       onChange={(e) =>
         updateElement(selectedElement, {
-          style: {
-            ...element.style,
-            fontSize: parseInt(e.target.value),
-          },
+          spacing: parseInt(e.target.value),
         })
       }
     />
-
-    {/* 🅱️ Peso */}
-    <label>🅱️ Peso:</label>
-    <select
-      value={element.style?.fontWeight || 'bold'}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          style: {
-            ...element.style,
-            fontWeight: e.target.value,
-          },
-        })
-      }
-    >
-      <option value="normal">Normal</option>
-      <option value="bold">Negrita</option>
-      <option value="lighter">Ligero</option>
-    </select>
-
-    {/* 🔠 Alineación */}
-    <label>🔠 Alineación:</label>
-    <select
-      value={element.style?.textAlign || 'left'}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          style: {
-            ...element.style,
-            textAlign: e.target.value as 'left' | 'center' | 'right',
-          },
-        })
-      }
-    >
-      <option value="left">Izquierda</option>
-      <option value="center">Centro</option>
-      <option value="right">Derecha</option>
-    </select>
-
-    {/* ✍️ Cursiva */}
-    <label>✍️ Cursiva:</label>
-    <select
-      value={element.style?.fontStyle || 'normal'}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          style: {
-            ...element.style,
-            fontStyle: e.target.value as 'normal' | 'italic',
-          },
-        })
-      }
-    >
-      <option value="normal">No</option>
-      <option value="italic">Sí</option>
-    </select>
-
-    {/* 🔁 Rotación */}
-    <label>🔁 Rotación:</label>
-    <input
-      type="range"
-      min={-180}
-      max={180}
-      step={1}
-      value={element.rotation || 0}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          rotation: parseInt(e.target.value),
-        })
-      }
-    />
-    <input
-      type="number"
-      min={-180}
-      max={180}
-      value={element.rotation || 0}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          rotation: parseInt(e.target.value),
-        })
-      }
-      style={{ width: '100%', marginTop: 4 }}
-    />
-    <span>{element.rotation || 0}°</span>
   </>
 )}
-{element.type === 'texto' && (
-  <>
-    <h4>📝 Estilo del Texto</h4>
 
-    {/* 🎨 Color del texto */}
-    <label>🎨 Color del texto:</label>
-    <HexColorPicker
-      color={typeof element.style?.color === 'string' ? element.style.color : '#000000'}
-      onChange={(color) =>
-        updateStyle({ color })
-      }
-    />
-
-    {/* 📏 Tamaño */}
-    <label>📏 Tamaño:</label>
-    <input
-      type="number"
-      min={10}
-      max={100}
-      value={parseInt(element.style?.fontSize as string) || 16}
-      onChange={(e) => updateStyle({ fontSize: parseInt(e.target.value) })}
-    />
-
-    {/* 🅱️ Peso */}
-    <label>🅱️ Peso:</label>
-    <select
-      value={element.style?.fontWeight || 'normal'}
-      onChange={(e) => updateStyle({ fontWeight: e.target.value })}
-    >
-      <option value="normal">Normal</option>
-      <option value="bold">Negrita</option>
-      <option value="lighter">Ligero</option>
-    </select>
-
-    {/* ✍️ Cursiva */}
-    <label>✍️ Cursiva:</label>
-    <select
-      value={element.style?.fontStyle || 'normal'}
-      onChange={(e) => updateStyle({ fontStyle: e.target.value })}
-    >
-      <option value="normal">No</option>
-      <option value="italic">Sí</option>
-    </select>
-
-    {/* 🔠 Alineación */}
-    <label>🔠 Alineación:</label>
-    <select
-      value={element.style?.textAlign || 'left'}
-      onChange={(e) => updateStyle({ textAlign: e.target.value })}
-    >
-      <option value="left">Izquierda</option>
-      <option value="center">Centro</option>
-      <option value="right">Derecha</option>
-    </select>
-
-    {/* ✏️ Edición directa del contenido */}
-    <label>✏️ Contenido:</label>
-    <textarea
-      value={element.content || ''}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          content: e.target.value
-        })
-      }
-      rows={5}
-      style={{ width: '100%' }}
-    />
-
-    {/* 🔁 Rotación */}
-    <label>🔁 Rotación:</label>
-    <input
-      type="range"
-      min={-180}
-      max={180}
-      step={1}
-      value={element.rotation || 0}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          rotation: parseInt(e.target.value),
-        })
-      }
-    />
-    <input
-      type="number"
-      min={-180}
-      max={180}
-      value={element.rotation || 0}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          rotation: parseInt(e.target.value),
-        })
-      }
-      style={{ width: '100%', marginTop: 4 }}
-    />
-    <span>{element.rotation || 0}°</span>
-  </>
-)}
-{element.type === 'icono' && (
-  <>
-    <h4>⭐ Estilo del Ícono</h4>
-
-    {/* 🎨 Color */}
-    <label>🎨 Color:</label>
-    <HexColorPicker
-      color={typeof element.style?.color === 'string' ? element.style.color : '#000000'}
-      onChange={(color) => updateStyle({ color })}
-    />
-
-    {/* 📏 Tamaño */}
-    <label>📏 Tamaño:</label>
-    <input
-      type="number"
-      min={8}
-      max={256}
-      value={element.width ?? 32}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          width: parseInt(e.target.value),
-        })
-      }
-    />
-    <span>{element.width ?? 32}px</span>
-
-    {/* 🔁 Rotación */}
-    <label>🔁 Rotación:</label>
-    <input
-      type="range"
-      min={-180}
-      max={180}
-      step={1}
-      value={element.rotation || 0}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          rotation: parseInt(e.target.value),
-        })
-      }
-    />
-    <input
-      type="number"
-      min={-180}
-      max={180}
-      value={element.rotation || 0}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          rotation: parseInt(e.target.value),
-        })
-      }
-      style={{ width: '100%', marginTop: 4 }}
-    />
-    <span>{element.rotation || 0}°</span>
-  </>
-)}
 
     </div>
   );

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { LucideIcon, icons } from 'lucide-react';
-import { useEditor } from '../../../../context/EditorContext';
+import { useEditor } from '../../../context/EditorContext';
 
 interface Props {
   id: string;

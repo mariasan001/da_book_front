@@ -6,7 +6,9 @@ import Linea from './Bloques/linea/Linea';
 import Contenedor from './Bloques/contenedor/Contenedor';
 import Titulo from './Bloques/titulo/Titulo';
 import Texto from './Bloques/texto/Texto';
-import Icono from './Bloques/iconos/components/Icono';
+import Icono from './Bloques/iconos/Icono';
+import Imagen from './Bloques/imagen/Imagen';
+import Mosaico from './Bloques/imagen/Mosaico';
 
 export default function EditorCanvas() {
   const { elements } = useEditor();
@@ -31,6 +33,11 @@ export default function EditorCanvas() {
             case 'icono': // ✅ Nuevo case
               return <Icono key={el.id} id={el.id} />;
             default:
+            case 'imagen':
+              return <Imagen key={el.id} id={el.id} />;
+            case 'mosaico':
+              return <Mosaico key={el.id} id={el.id} />;
+
               return null;
           }
         })
