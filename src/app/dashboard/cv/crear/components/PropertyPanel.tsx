@@ -216,6 +216,158 @@ export default function PropertyPanel() {
     <span>{element.rotation || 0}°</span>
   </>
 )}
+{element.type === 'texto' && (
+  <>
+    <h4>📝 Estilo del Texto</h4>
+
+    {/* 🎨 Color del texto */}
+    <label>🎨 Color del texto:</label>
+    <HexColorPicker
+      color={typeof element.style?.color === 'string' ? element.style.color : '#000000'}
+      onChange={(color) =>
+        updateStyle({ color })
+      }
+    />
+
+    {/* 📏 Tamaño */}
+    <label>📏 Tamaño:</label>
+    <input
+      type="number"
+      min={10}
+      max={100}
+      value={parseInt(element.style?.fontSize as string) || 16}
+      onChange={(e) => updateStyle({ fontSize: parseInt(e.target.value) })}
+    />
+
+    {/* 🅱️ Peso */}
+    <label>🅱️ Peso:</label>
+    <select
+      value={element.style?.fontWeight || 'normal'}
+      onChange={(e) => updateStyle({ fontWeight: e.target.value })}
+    >
+      <option value="normal">Normal</option>
+      <option value="bold">Negrita</option>
+      <option value="lighter">Ligero</option>
+    </select>
+
+    {/* ✍️ Cursiva */}
+    <label>✍️ Cursiva:</label>
+    <select
+      value={element.style?.fontStyle || 'normal'}
+      onChange={(e) => updateStyle({ fontStyle: e.target.value })}
+    >
+      <option value="normal">No</option>
+      <option value="italic">Sí</option>
+    </select>
+
+    {/* 🔠 Alineación */}
+    <label>🔠 Alineación:</label>
+    <select
+      value={element.style?.textAlign || 'left'}
+      onChange={(e) => updateStyle({ textAlign: e.target.value })}
+    >
+      <option value="left">Izquierda</option>
+      <option value="center">Centro</option>
+      <option value="right">Derecha</option>
+    </select>
+
+    {/* ✏️ Edición directa del contenido */}
+    <label>✏️ Contenido:</label>
+    <textarea
+      value={element.content || ''}
+      onChange={(e) =>
+        updateElement(selectedElement, {
+          content: e.target.value
+        })
+      }
+      rows={5}
+      style={{ width: '100%' }}
+    />
+
+    {/* 🔁 Rotación */}
+    <label>🔁 Rotación:</label>
+    <input
+      type="range"
+      min={-180}
+      max={180}
+      step={1}
+      value={element.rotation || 0}
+      onChange={(e) =>
+        updateElement(selectedElement, {
+          rotation: parseInt(e.target.value),
+        })
+      }
+    />
+    <input
+      type="number"
+      min={-180}
+      max={180}
+      value={element.rotation || 0}
+      onChange={(e) =>
+        updateElement(selectedElement, {
+          rotation: parseInt(e.target.value),
+        })
+      }
+      style={{ width: '100%', marginTop: 4 }}
+    />
+    <span>{element.rotation || 0}°</span>
+  </>
+)}
+{element.type === 'icono' && (
+  <>
+    <h4>⭐ Estilo del Ícono</h4>
+
+    {/* 🎨 Color */}
+    <label>🎨 Color:</label>
+    <HexColorPicker
+      color={typeof element.style?.color === 'string' ? element.style.color : '#000000'}
+      onChange={(color) => updateStyle({ color })}
+    />
+
+    {/* 📏 Tamaño */}
+    <label>📏 Tamaño:</label>
+    <input
+      type="number"
+      min={8}
+      max={256}
+      value={element.width ?? 32}
+      onChange={(e) =>
+        updateElement(selectedElement, {
+          width: parseInt(e.target.value),
+        })
+      }
+    />
+    <span>{element.width ?? 32}px</span>
+
+    {/* 🔁 Rotación */}
+    <label>🔁 Rotación:</label>
+    <input
+      type="range"
+      min={-180}
+      max={180}
+      step={1}
+      value={element.rotation || 0}
+      onChange={(e) =>
+        updateElement(selectedElement, {
+          rotation: parseInt(e.target.value),
+        })
+      }
+    />
+    <input
+      type="number"
+      min={-180}
+      max={180}
+      value={element.rotation || 0}
+      onChange={(e) =>
+        updateElement(selectedElement, {
+          rotation: parseInt(e.target.value),
+        })
+      }
+      style={{ width: '100%', marginTop: 4 }}
+    />
+    <span>{element.rotation || 0}°</span>
+  </>
+)}
 
     </div>
   );

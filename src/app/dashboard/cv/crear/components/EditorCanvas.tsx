@@ -1,8 +1,12 @@
+'use client';
+
 import './EditorCanvas.css';
 import { useEditor } from '../context/EditorContext';
 import Linea from './Bloques/linea/Linea';
 import Contenedor from './Bloques/contenedor/Contenedor';
-import Titulo from './Bloques/titulo/Titulo'; // 👈 Importa tu nuevo componente
+import Titulo from './Bloques/titulo/Titulo';
+import Texto from './Bloques/texto/Texto';
+import Icono from './Bloques/iconos/components/Icono';
 
 export default function EditorCanvas() {
   const { elements } = useEditor();
@@ -20,8 +24,12 @@ export default function EditorCanvas() {
               return <Contenedor key={el.id} id={el.id} />;
             case 'linea':
               return <Linea key={el.id} id={el.id} />;
-            case 'titulo': // 👈 Agrega esto
+            case 'titulo':
               return <Titulo key={el.id} id={el.id} />;
+            case 'texto':
+              return <Texto key={el.id} id={el.id} />;
+            case 'icono': // ✅ Nuevo case
+              return <Icono key={el.id} id={el.id} />;
             default:
               return null;
           }

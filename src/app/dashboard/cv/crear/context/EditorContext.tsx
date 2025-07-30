@@ -9,20 +9,55 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
   const [elements, setElements] = useState<ElementoCV[]>([]);
   const [selectedElement, setSelectedElement] = useState<string | null>(null);
 
-  const addElement = (type: ElementoCV['type']) => {
+  const addElement = (
+    type: ElementoCV['type'],
+    extraProps?: Partial<ElementoCV>
+  ) => {
     const isLinea = type === 'linea';
+    const isFlecha = type === 'flecha';
+    const isTitulo = type === 'titulo';
+    const isTexto = type === 'texto';
+    const isIcono = type === 'icono';
+
     const newEl: ElementoCV = {
       id: crypto.randomUUID(),
       type,
-      content: '',
+      content: isTitulo
+        ? 'Nuevo Título'
+        : isTexto
+        ? '<p>Nuevo texto</p>'
+        : '',
       style: {
-        backgroundColor: '#000000',
+        ...(isFlecha && { direction: 'right' }),
+        ...(isTitulo && {
+          fontSize: '32px',
+          fontWeight: 'bold',
+          color: '#000000',
+          backgroundColor: 'transparent',
+        }),
+        ...(isTexto && {
+          fontSize: '16px',
+          fontWeight: 'normal',
+          color: '#000000',
+          backgroundColor: 'transparent',
+          textAlign: 'left',
+        }),
+        ...(isIcono && {
+          color: '#000000',
+        }),
+        ...(!isFlecha && !isTitulo && !isTexto && !isIcono && {
+          backgroundColor: '#000000',
+          borderStyle: 'solid',
+          borderRadius: '0px',
+        }),
       },
-      width: isLinea ? 200 : 150,
-      height: isLinea ? 4 : 100,
+      width: isIcono ? 40 : isLinea || isFlecha ? 200 : isTitulo || isTexto ? 300 : 150,
+      height: isIcono ? 40 : isLinea || isFlecha ? 4 : isTitulo || isTexto ? 100 : 100,
       x: 100,
       y: 100,
+      ...(isIcono && { iconName: extraProps?.iconName || 'Smile' }),
     };
+
     setElements(prev => [...prev, newEl]);
   };
 
@@ -83,7 +118,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         elements,
         addElement,
         selectedElement,
-        selectElement, // ✅ clave para selección
+        selectElement,
         updateElementStyle,
         updateElement,
         deleteElement,
