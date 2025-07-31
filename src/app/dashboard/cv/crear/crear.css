@@ -4,3 +4,24 @@
   width: 100%;
   position: relative; /* 👈 Esto es la clave para ubicar paneles flotantes dentro */
 }
+.btn-exit-preview {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 30px;
+  background-color: #9f2141;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-exit-preview:hover {
+  background-color: #bc345a;
+  transform: scale(1.05);
+}

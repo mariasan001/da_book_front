@@ -8,6 +8,7 @@ const EditorContext = createContext<EditorContextType | undefined>(undefined);
 export const EditorProvider = ({ children }: { children: ReactNode }) => {
   const [elements, setElements] = useState<ElementoCV[]>([]);
   const [selectedElement, setSelectedElement] = useState<string | null>(null);
+  const [isPreviewMode, setPreviewMode] = useState<boolean>(false); // 🆕 Estado de visualización
 
   const addElement = (
     type: ElementoCV['type'],
@@ -38,7 +39,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         ? extraProps?.content || 'https://tusitio.com'
         : '',
 
-      ...(isFlecha && { direction: 'right' }), // 👈 fuera de style
+      ...(isFlecha && { direction: 'right' }),
 
       style: {
         ...(isTitulo && {
@@ -164,7 +165,9 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         updateElement,
         deleteElement,
         duplicateElement,
-        getElementById
+        getElementById,
+        isPreviewMode,       // 🆕
+        setPreviewMode       // 🆕
       }}
     >
       {children}

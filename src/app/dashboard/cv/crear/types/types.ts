@@ -6,8 +6,8 @@ export type TipoElemento =
   | 'linea'
   | 'texto'
   | 'imagen'
-  | 'mosaico'   
-  | 'enlace'    
+  | 'mosaico'
+  | 'enlace'
   | 'video'
   | 'flecha'
   | 'titulo'
@@ -21,7 +21,7 @@ export interface ElementoCV {
   // Contenido: texto, imagen, arreglo de imágenes, etc.
   content?: string | string[];
 
-  // ✅ Solo si el tipo es 'enlace'
+  // Solo si el tipo es 'enlace'
   href?: string;
 
   // Estilos CSS aplicables al elemento
@@ -41,11 +41,11 @@ export interface ElementoCV {
   // Icono específico (solo si type === 'icono')
   iconName?: string;
 
-  // ✅ Props específicas para mosaico
+  // Props específicas para mosaico
   columns?: number;
   spacing?: number;
 
-  // Acciones para el menú contextual (opcional)
+  // Acciones del menú contextual (opcional)
   actions?: {
     label: string;
     action: () => void;
@@ -69,4 +69,8 @@ export interface EditorContextType {
   deleteElement: (id: string) => void;
   duplicateElement: (id: string) => void;
   getElementById: (id: string) => ElementoCV | undefined;
+
+  // 🆕 Estado de visualización
+  isPreviewMode: boolean;
+  setPreviewMode: (value: boolean) => void;
 }

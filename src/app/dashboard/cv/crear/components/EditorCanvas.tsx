@@ -2,6 +2,7 @@
 
 import './EditorCanvas.css';
 import { useEditor } from '../context/EditorContext';
+import { useRouter } from 'next/navigation';
 
 import Linea from './Bloques/linea/Linea';
 import Contenedor from './Bloques/contenedor/Contenedor';
@@ -13,36 +14,57 @@ import Mosaico from './Bloques/imagen/Mosaico';
 import Enlace from './Bloques/enlaces/enlaces';
 import Video from './Bloques/video/video';
 
-export default function EditorCanvas() {
+interface Props {
+  isPreview?: boolean; // Si estamos en modo visualización
+}
+
+export default function EditorCanvas({ isPreview = false }: Props) {
   const { elements } = useEditor();
+  const router = useRouter();
 
   return (
-    <div className="editor-canvas">
+    <div className={`editor-canvas ${isPreview ? 'preview-mode' : ''}`}>
+      {isPreview && (
+        <button
+          className="btn-flotante-regresar"
+          onClick={() => router.push('/dashboard/cv/crear')}
+        >
+          ⬅️ Volver a edición
+        </button>
+      )}
+
       {elements.length === 0 ? (
         <p className="editor-placeholder">
-          Arrastra tu componente aquí y empieza a crear tu mundo ✨
+          {isPreview
+            ? 'Aún no hay contenido que mostrar.'
+            : 'Arrastra tu componente aquí y empieza a crear tu mundo ✨'}
         </p>
       ) : (
         elements.map((el) => {
+          const props = {
+            id: el.id,
+            isPreview
+          };
+          
           switch (el.type) {
             case 'contenedor':
-              return <Contenedor key={el.id} id={el.id} />;
+              return <Contenedor key={el.id} {...props} />;
             case 'linea':
-              return <Linea key={el.id} id={el.id} />;
+              return <Linea key={el.id} {...props} />;
             case 'titulo':
-              return <Titulo key={el.id} id={el.id} />;
+              return <Titulo key={el.id} {...props} />;
             case 'texto':
-              return <Texto key={el.id} id={el.id} />;
-            case 'icono': 
-              return <Icono key={el.id} id={el.id} />;
+              return <Texto key={el.id} {...props} />;
+            case 'icono':
+              return <Icono key={el.id} {...props} />;
             case 'imagen':
-              return <Imagen key={el.id} id={el.id} />;
+              return <Imagen key={el.id} {...props} />;
             case 'mosaico':
-              return <Mosaico key={el.id} id={el.id} />;
+              return <Mosaico key={el.id} {...props} />;
             case 'enlace':
-             return <Enlace key={el.id} id={el.id} element={el} />;
-             case 'video':
-             return <Video key={el.id} id={el.id} element={el} />;
+              return <Enlace key={el.id} {...props} element={el} />;
+            case 'video':
+              return <Video key={el.id} {...props} element={el} />;
             default:
               return null;
           }

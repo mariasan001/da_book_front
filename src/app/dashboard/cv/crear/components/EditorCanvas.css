@@ -34,3 +34,14 @@
   border-radius: 50%;
   border: 2px solid #fff;
 }
+.preview-mode {
+  pointer-events: none;
+  user-select: none;
+  cursor: default;
+  background-color: #fff;
+}
+
+.preview-mode * {
+  pointer-events: none;
+  user-select: none;
+}

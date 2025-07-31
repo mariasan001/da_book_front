@@ -1,3 +1,5 @@
+'use client';
+
 import {
   LayoutTemplate,
   Minus,
@@ -8,7 +10,7 @@ import {
   ImageIcon,
   GalleryHorizontalEnd,
   Link2,
-  VideoIcon // 👈 nuevos íconos sugeridos para la sección visual
+  VideoIcon
 } from 'lucide-react';
 import './EditorSidebar.css';
 import { useState } from 'react';
@@ -18,8 +20,11 @@ import IconModal from './Bloques/iconos/components/IconModal';
 import EditorActions from './EditorActions';
 
 export default function EditorPanel() {
-  const { addElement } = useEditor();
-  const [showIcons, setShowIcons] = useState(false); // ⬅️ Para el modal de íconos
+  const { addElement, isPreviewMode, setPreviewMode } = useEditor();
+  const [showIcons, setShowIcons] = useState(false);
+
+  // ⛔ No mostrar el panel si estamos en modo "visualizar"
+  if (isPreviewMode) return null;
 
   return (
     <section className="editor-panel">
@@ -54,7 +59,7 @@ export default function EditorPanel() {
         </button>
       </div>
 
-      {/* 🔥 NUEVA SECCIÓN: muestra tu arte */}
+      {/* Sección visual (arte) */}
       <span className="panel-section">Muestra tu arte</span>
       <div className="icon-grid">
         <button title="Imagen" onClick={() => addElement('imagen')}>
@@ -71,16 +76,19 @@ export default function EditorPanel() {
         </button>
       </div>
 
-      {/* Propiedades del elemento seleccionado */}
+      {/* Panel de propiedades */}
       <div className="properties-panel">
         <PropertyPanel />
       </div>
+
+      {/* Acciones principales */}
       <EditorActions
-        onVisualizar={() => alert('🔍 Visualizando...')}
+        onVisualizar={() => setPreviewMode(true)}
         onGuardar={() => alert('💾 Guardando...')}
         onPublicar={() => alert('🚀 Publicando...')}
       />
-      {/* Modal para íconos */}
+
+      {/* Modal para elegir íconos */}
       {showIcons && <IconModal onClose={() => setShowIcons(false)} />}
     </section>
   );
