@@ -6,8 +6,8 @@ export type TipoElemento =
   | 'linea'
   | 'texto'
   | 'imagen'
-  | 'mosaico'   // 🧩 tipo independiente para múltiples imágenes
-  | 'enlace'    // 🔗 Enlace con texto y URL
+  | 'mosaico'   
+  | 'enlace'    
   | 'video'
   | 'flecha'
   | 'titulo'

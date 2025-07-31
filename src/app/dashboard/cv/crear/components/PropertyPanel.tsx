@@ -378,37 +378,199 @@ export default function PropertyPanel() {
       )}
 
       {/* 🧩 MOSAICO */}
-{element.type === 'mosaico' && (
-  <>
-    <h4>🧩 Mosaico</h4>
+      {element.type === 'mosaico' && (
+        <>
+          <h4>🧩 Mosaico</h4>
 
-    <label>📐 Columnas:</label>
-    <input
-      type="number"
-      min={1}
-      max={20}
-      value={element.columns || 3}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          columns: parseInt(e.target.value),
-        })
-      }
-    />
+          <label>📐 Columnas:</label>
+          <input
+            type="number"
+            min={1}
+            max={20}
+            value={element.columns || 3}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                columns: parseInt(e.target.value),
+              })
+            }
+          />
 
-    <label>📐 Espaciado:</label>
-    <input
-      type="number"
-      min={0}
-      max={100}
-      value={element.spacing || 4}
-      onChange={(e) =>
-        updateElement(selectedElement, {
-          spacing: parseInt(e.target.value),
-        })
-      }
-    />
-  </>
-)}
+          <label>📐 Espaciado:</label>
+          <input
+            type="number"
+            min={0}
+            max={100}
+            value={element.spacing || 4}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                spacing: parseInt(e.target.value),
+              })
+            }
+          />
+        </>
+      )}
+      {/* 🔗 ENLACE */}
+      {element.type === 'enlace' && (
+        <>
+          <h4>🔗 Estilo del Enlace</h4>
+
+          <label>🎨 Color:</label>
+          <HexColorPicker
+            color={element.style?.color || '#0000EE'}
+            onChange={(color) => updateStyle({ color })}
+          />
+
+          <label>📏 Tamaño:</label>
+          <input
+            type="number"
+            min={10}
+            max={100}
+            value={safeParse(element.style?.fontSize, 16)}
+            onChange={(e) => updateStyle({ fontSize: parseInt(e.target.value) })}
+          />
+
+          <label>🅱️ Peso:</label>
+          <select
+            value={element.style?.fontWeight || 'normal'}
+            onChange={(e) => updateStyle({ fontWeight: e.target.value })}
+          >
+            <option value="normal">Normal</option>
+            <option value="bold">Negrita</option>
+            <option value="lighter">Ligero</option>
+          </select>
+
+          <label>✍️ Cursiva:</label>
+          <select
+            value={element.style?.fontStyle || 'normal'}
+            onChange={(e) => updateStyle({ fontStyle: e.target.value })}
+          >
+            <option value="normal">No</option>
+            <option value="italic">Sí</option>
+          </select>
+
+          <label>🔠 Alineación:</label>
+          <select
+            value={element.style?.textAlign || 'left'}
+            onChange={(e) => updateStyle({ textAlign: e.target.value })}
+          >
+            <option value="left">Izquierda</option>
+            <option value="center">Centro</option>
+            <option value="right">Derecha</option>
+          </select>
+
+          <label>📝 Texto visible:</label>
+          <input
+            type="text"
+            value={element.content || ''}
+            onChange={(e) =>
+              updateElement(selectedElement, { content: e.target.value })
+            }
+            style={{ width: '100%' }}
+          />
+
+          <label>🌐 URL:</label>
+          <input
+            type="text"
+            value={element.href || ''}
+            onChange={(e) =>
+              updateElement(selectedElement, { href: e.target.value })
+            }
+            style={{ width: '100%' }}
+            placeholder="https://tusueño.com"
+          />
+
+          <label>🔁 Rotación:</label>
+          <input
+            type="range"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value),
+              })
+            }
+          />
+          <input
+            type="number"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value),
+              })
+            }
+            style={{ width: '100%', marginTop: 4 }}
+          />
+          <span>{element.rotation || 0}°</span>
+        </>
+      )}
+      {/* 🎥 VIDEO */}
+      {element.type === 'video' && (
+        <>
+          <h4>🎥 Propiedades del Video</h4>
+
+          <label>🌐 URL del video:</label>
+          <input
+            type="text"
+            value={typeof element.content === 'string' ? element.content : ''}
+            onChange={(e) =>
+              updateElement(selectedElement, { content: e.target.value })
+            }
+            style={{ width: '100%' }}
+            placeholder="https://www.youtube.com/embed/..."
+          />
+
+          <label>📏 Ancho:</label>
+          <input
+            type="number"
+            min={100}
+            max={2000}
+            value={element.width ?? 300}
+            onChange={(e) =>
+              updateElement(selectedElement, { width: parseInt(e.target.value) })
+            }
+          />
+
+          <label>📐 Alto:</label>
+          <input
+            type="number"
+            min={100}
+            max={2000}
+            value={element.height ?? 200}
+            onChange={(e) =>
+              updateElement(selectedElement, { height: parseInt(e.target.value) })
+            }
+          />
+
+          <label>🔁 Rotación:</label>
+          <input
+            type="range"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value),
+              })
+            }
+          />
+          <input
+            type="number"
+            min={-180}
+            max={180}
+            value={element.rotation || 0}
+            onChange={(e) =>
+              updateElement(selectedElement, {
+                rotation: parseInt(e.target.value),
+              })
+            }
+            style={{ width: '100%', marginTop: 4 }}
+          />
+          <span>{element.rotation || 0}°</span>
+        </>
+      )}
 
 
     </div>

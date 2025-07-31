@@ -15,6 +15,7 @@ import { useState } from 'react';
 import PropertyPanel from './PropertyPanel';
 import { useEditor } from '../context/EditorContext';
 import IconModal from './Bloques/iconos/components/IconModal';
+import EditorActions from './EditorActions';
 
 export default function EditorPanel() {
   const { addElement } = useEditor();
@@ -74,7 +75,11 @@ export default function EditorPanel() {
       <div className="properties-panel">
         <PropertyPanel />
       </div>
-
+      <EditorActions
+        onVisualizar={() => alert('🔍 Visualizando...')}
+        onGuardar={() => alert('💾 Guardando...')}
+        onPublicar={() => alert('🚀 Publicando...')}
+      />
       {/* Modal para íconos */}
       {showIcons && <IconModal onClose={() => setShowIcons(false)} />}
     </section>

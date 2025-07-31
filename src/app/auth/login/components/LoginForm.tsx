@@ -56,7 +56,7 @@ export default function LoginForm({ modoRegistro }: Props) {
           <button
             type="button"
             className="btnn btn--primary"
-            onClick={manejarInicio} // 👈 Evento de navegación
+            onClick={manejarInicio} 
           >
             Comencemos a explorar
           </button>
