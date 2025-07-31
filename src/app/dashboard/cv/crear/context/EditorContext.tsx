@@ -37,8 +37,10 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         : isEnlace
         ? extraProps?.content || 'https://tusitio.com'
         : '',
+
+      ...(isFlecha && { direction: 'right' }), // 👈 fuera de style
+
       style: {
-        ...(isFlecha && { direction: 'right' }),
         ...(isTitulo && {
           fontSize: 32,
           fontWeight: 'bold',
@@ -69,7 +71,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
             borderStyle: 'solid',
             borderRadius: '0px'
           })
-      } as React.CSSProperties,
+      },
 
       width: isIcono
         ? 40
@@ -80,6 +82,7 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         : isImagen || isVideo || isMosaico
         ? 300
         : 150,
+
       height: isIcono
         ? 40
         : isLinea || isFlecha
@@ -89,8 +92,10 @@ export const EditorProvider = ({ children }: { children: ReactNode }) => {
         : isImagen || isVideo || isMosaico
         ? 200
         : 100,
+
       x: 100,
       y: 100,
+
       ...(isIcono && { iconName: extraProps?.iconName || 'Smile' })
     };
 

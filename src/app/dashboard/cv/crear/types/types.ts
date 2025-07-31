@@ -7,7 +7,7 @@ export type TipoElemento =
   | 'texto'
   | 'imagen'
   | 'mosaico'   // 🧩 tipo independiente para múltiples imágenes
-  | 'enlace'
+  | 'enlace'    // 🔗 Enlace con texto y URL
   | 'video'
   | 'flecha'
   | 'titulo'
@@ -18,10 +18,13 @@ export interface ElementoCV {
   id: string;
   type: TipoElemento;
 
-  // ✅ Ahora permite string (para imagen normal) o string[] (para mosaico)
+  // Contenido: texto, imagen, arreglo de imágenes, etc.
   content?: string | string[];
 
-  // ✅ Estilos CSS aplicables al elemento
+  // ✅ Solo si el tipo es 'enlace'
+  href?: string;
+
+  // Estilos CSS aplicables al elemento
   style?: CSSProperties;
 
   // Tamaño (opcional)
