@@ -3,9 +3,11 @@
 import './styles/login-form.css';
 import { PenLine, Lock, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation'; // 
+import { useRouter } from 'next/navigation';
+
 import IconInput from '../components/IconInput';
 import FormHeader from '../components/FormHeader';
+import { useAuthContext } from '@/context/AuthContext';
 
 interface Props {
   modoRegistro: boolean;
@@ -13,10 +15,23 @@ interface Props {
 
 export default function LoginForm({ modoRegistro }: Props) {
   const [visible, setVisible] = useState(false);
-  const router = useRouter(); // 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const manejarInicio = () => {
-    router.push('/dashboard'); // 
+  const router = useRouter();
+  const { login } = useAuthContext();
+
+  const manejarInicio = async () => {
+    setLoading(true);
+    try {
+      await login(username, password);
+      router.push('/dashboard');       
+    } catch (err) {
+      alert('Usuario o contraseña incorrecta');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -35,6 +50,8 @@ export default function LoginForm({ modoRegistro }: Props) {
           <IconInput
             iconLeft={<PenLine size={18} />}
             placeholder="Nombre creativo"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
 
@@ -47,8 +64,10 @@ export default function LoginForm({ modoRegistro }: Props) {
             type={visible ? 'text' : 'password'}
             iconRight={visible ? <EyeOff size={18} /> : <Eye size={18} />}
             onRightIconClick={() => setVisible(!visible)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <a className="form-link">recuperar mi clave secreta</a>
+          <a className="form-link">Recuperar mi clave secreta</a>
         </div>
 
         {/* Botón */}
@@ -56,9 +75,10 @@ export default function LoginForm({ modoRegistro }: Props) {
           <button
             type="button"
             className="btnn btn--primary"
-            onClick={manejarInicio} 
+            onClick={manejarInicio}
+            disabled={loading}
           >
-            Comencemos a explorar
+            {loading ? 'Ingresando...' : 'Comencemos a explorar'}
           </button>
         </div>
       </form>
