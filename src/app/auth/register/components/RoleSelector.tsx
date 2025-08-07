@@ -3,12 +3,23 @@
 import Image from 'next/image';
 import './styles/role_selector.css';
 
+import { Role } from '@/types/role'; // ✅ Modelo de rol
+import { useRoles } from '@/app/hooks/useRoles';
+
 interface Props {
-  onSeleccionarAlumno: () => void;
-  onSeleccionarArtista: () => void;
+  onSeleccionarAlumno: (rolId: number) => void;
+  onSeleccionarArtista: (rolId: number) => void;
 }
 
 export default function RoleSelector({ onSeleccionarAlumno, onSeleccionarArtista }: Props) {
+  const { roles, loading } = useRoles();
+
+  if (loading) return <p>Cargando roles...</p>;
+
+  // ✅ Tipado correcto de búsqueda
+  const rolAlumno: Role | undefined = roles.find((rol) => rol.descRol === 'ROLE_STUDENT');
+  const rolArtista: Role | undefined = roles.find((rol) => rol.descRol === 'ROLE_TEACHER');
+
   return (
     <section className="register-form">
       <div className="register-form__header">
@@ -17,7 +28,11 @@ export default function RoleSelector({ onSeleccionarAlumno, onSeleccionarArtista
       </div>
 
       <div className="register-form__cards">
-        <div className="register-card" onClick={onSeleccionarAlumno}>
+        {/* Card para alumno */}
+        <div
+          className="register-card"
+          onClick={() => rolAlumno && onSeleccionarAlumno(rolAlumno.id)}
+        >
           <div className="register-card__icon">
             <Image src="/img/cohete.png" alt="Aprender" width={60} height={60} />
           </div>
@@ -27,7 +42,11 @@ export default function RoleSelector({ onSeleccionarAlumno, onSeleccionarArtista
           </p>
         </div>
 
-        <div className="register-card" onClick={onSeleccionarArtista}>
+        {/* Card para artista */}
+        <div
+          className="register-card"
+          onClick={() => rolArtista && onSeleccionarArtista(rolArtista.id)}
+        >
           <div className="register-card__icon">
             <Image src="/img/microfono.png" alt="Inspirar" width={60} height={60} />
           </div>

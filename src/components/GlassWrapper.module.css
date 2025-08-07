@@ -1,0 +1,61 @@
+.glassWrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 20, 20, 0.12);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 0;
+  
+}
+
+/* Luces */
+.blurShape {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #5b0f4b 0%, #0f0e0f 30%, transparent 80%);
+  filter: blur(220px) brightness(2.5) saturate(1.8);
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  animation: auroraWaves 12s ease-in-out infinite alternate;
+}
+
+.alt {
+  top: 65%;
+  left: 25%;
+  width: 600px;
+  background: radial-gradient(circle at center, #242323 0%, #b0038d 40%, transparent 90%);
+  filter: blur(240px) brightness(2.8) saturate(2);
+  opacity: 0.5;
+  animation-delay: 3s;
+}
+
+.extra {
+  top: 25%;
+  left: 75%;
+  width: 500px;
+  background: radial-gradient(circle at center, #0b0508 0%, #89004f 30%, #010101 50%, transparent 90%);
+  filter: blur(260px) brightness(1.2) saturate(1.3);
+  opacity: 0.4;
+  animation-delay: 5s;
+}
+
+@keyframes auroraWaves {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-45%, -55%) scale(1.4) rotate(180deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(360deg);
+  }
+}
