@@ -1,18 +1,23 @@
-// src/lib/blockMapper.ts
-
-// Importa cada componente visual (bloques) que vas a usar
-
-
-// Define el tipo de claves (opcional si usas TS)
+// src/app/dashboard/cv/crear/lib/blockMapper.ts
+import type { FC } from 'react';
 import { BloqueID } from '@/app/dashboard/cv/crear/types/bloques';
-import Presentacion from '../components/Presentacion';
+import { Modo } from '@/app/dashboard/cv/crear/types/modo';
 
-// Crea el mapper: cada clave representa el ID de un bloque
-export const blockMapper: Record<BloqueID, React.FC> = {
+import Presentacion from '@/app/dashboard/cv/crear/components/Presentacion';
+import FraseYRedes from '../components/FraseYRedes';
+import LineaDeTiempo from '../components/LineaDeTiempo';
+import Galeria from '../components/Galeria';
+import Educacion from '../components/Educacion';
+
+// Todos los bloques deben aceptar (opcional) la prop `modo`
+export type BloqueComponent = FC<{ modo?: Modo }>;
+
+// Mapper tolerante: permite `undefined` mientras un bloque no exista aún
+export const blockMapper: Record<BloqueID, BloqueComponent | undefined> = {
   presentacion: Presentacion,
-  fraseYRedes: undefined,
-  lineaTiempo: undefined,
-  galeria: undefined,
-  educacion: undefined,
-  cursos: undefined
+  fraseYRedes: FraseYRedes,
+  lineaTiempo: LineaDeTiempo,
+  galeria: Galeria,
+  educacion: Educacion,
+  cursos: undefined,
 };
