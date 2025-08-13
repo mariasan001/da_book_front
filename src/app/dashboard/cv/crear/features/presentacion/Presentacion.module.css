@@ -1,0 +1,290 @@
+/* ===== Design tokens ===== */
+:root {
+  --bg-surface: #0c0c0f;
+  --bg-panel: #141418;
+  --bg-input: #0f0f12;
+
+  --txt: #f2f3f7;
+  --muted: #b8b9c2;
+
+  --accent: #ff4ecd;   /* fucsia principal */
+  --accent-2: #ed3a79; /* fucsia cálido */
+  --accent-deep: #7c3aed;
+
+  --border: rgba(255,255,255,.09);
+  --shadow: 0 24px 60px rgba(0,0,0,.38);
+
+  --radius: 16px;
+  --radius-xl: 22px;
+  --radius-2xl: 36px;
+
+  --pad: 22px;
+  --gap: 18px;
+
+  --focus: 0 0 0 3px #ff4ecd2a, 0 0 0 1px #ff4ecd6b;
+}
+
+/* ===== Contenedores base ===== */
+.presentacion,
+.presentacion-editar {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 32px;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* ===== Vista (public) ===== */
+.presentacion {
+  /* fucsias + negros con profundidad */
+  background:
+    radial-gradient(60% 80% at 100% 0%, #ff4ecd22 0%, transparent 60%),
+    linear-gradient(135deg, #1a001f 0%, #5a0046 55%, #c600a3 100%);
+  color: var(--txt);
+}
+
+.contenido {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 28px;
+  padding: 24px;
+}
+
+.texto { padding: 8px 6px; }
+
+.texto h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.12;
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+}
+
+.usuario {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  margin: 0 0 16px;
+  font-weight: 600;
+}
+
+.estrella { font-size: 14px; opacity: .9; }
+
+.bio {
+  margin: 10px 0 18px;
+  line-height: 1.65;
+  color: var(--txt);
+}
+
+.fucsia { color: var(--accent); font-weight: 600; }
+
+.infoExtra {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+  color: var(--muted);
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+.divisor { opacity: .35; }
+
+.botones {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.botones button {
+  background: #ffffff10;
+  color: var(--txt);
+  border: 1px solid #ffffff24;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .12s ease, background .2s ease, border-color .2s ease;
+}
+.botones button:hover { transform: translateY(-1px); background: #ffffff18; border-color: #ffffff3a; }
+
+/* Foto (vista) */
+.foto { display: flex; align-items: center; justify-content: center; }
+.uploadWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #0b0b10;
+  border-radius: 30px 30px 220px 30px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: outline-color .2s ease, transform .15s ease;
+}
+.uploadWrapper:hover { outline: 2px dashed #ffffff1f; outline-offset: 6px; transform: translateY(-1px); }
+.imagenPreview { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ===== Edición ===== */
+.presentacion-editar {
+  background:
+    radial-gradient(800px 90% at 70% -20%, #7c3aed2e, transparent 70%),
+    linear-gradient(135deg, #1a001f 0%, #4a034f 55%, #6b0f7a 100%);
+  color: var(--txt);
+  padding: var(--pad);
+}
+
+.contenedorFlex {
+  display: grid;
+  grid-template-columns: 1.5fr .95fr;
+  gap: 24px;
+}
+
+.editorGrid {
+  background: #00000022;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  padding: 18px;
+  display: grid;
+  gap: var(--gap);
+}
+
+/* Labels e inputs */
+.label {
+  display: grid;
+  gap: 8px;
+  color: var(--txt);
+  font-weight: 700;
+  font-size: 14px;
+}
+.label span { display: inline-flex; align-items: center; gap: 8px; }
+
+.label input,
+.bioTextareaWrapper textarea,
+.inputPais {
+  width: 100%;
+  height: 44px;
+  background: var(--bg-input);
+  color: var(--txt);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.bioTextareaWrapper textarea { height: auto; min-height: 110px; resize: vertical; }
+
+.label input::placeholder,
+.bioTextareaWrapper textarea::placeholder { color: #ffffff6b; }
+
+.label input:focus,
+.bioTextareaWrapper textarea:focus,
+.inputPais:focus {
+  box-shadow: var(--focus);
+  border-color: #ff4ecd6b;
+}
+
+/* Bio + botón Subrayar */
+.bioTextareaWrapper { position: relative; display: grid; gap: 8px; }
+.highlightBtn {
+  position: absolute;
+  right: 12px;
+  top: 34px;
+  transform: translateY(-50%);
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: #19061f;
+  border: none;
+  border-radius: 10px;
+  font-weight: 800;
+  padding: 10px 16px;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(255, 78, 205, .35);
+  transition: transform .12s ease, filter .2s ease, box-shadow .2s ease;
+}
+.highlightBtn:hover { transform: translateY(-52%); filter: brightness(1.05); box-shadow: 0 14px 30px rgba(255, 78, 205, .45); }
+
+.inputPais { background: var(--bg-panel); }
+
+/* Columna foto (edición) */
+.editorFoto {
+  background: #00000022;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  padding: 18px;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+}
+
+/* Botón “+” */
+.uploadBtn {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid #ffffff33;
+  background: linear-gradient(180deg, #ffffff, #eeeeff);
+  color: #191a20;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 12px 26px rgba(0,0,0,.35);
+  transition: transform .1s ease, box-shadow .2s ease;
+}
+.uploadBtn:hover { transform: translateY(-1px); box-shadow: 0 16px 34px rgba(0,0,0,.42); }
+
+/* ===== Responsivo ===== */
+@media (max-width: 1100px) {
+  .contenido { grid-template-columns: 1fr; }
+  .contenedorFlex { grid-template-columns: 1fr; }
+  .uploadWrapper { border-radius: 24px; }
+}
+@media (max-width: 640px) {
+  .presentacion, .presentacion-editar { border-radius: 18px; }
+  .contenido, .presentacion-editar { padding: 16px; }
+  .botones { gap: 10px; }
+  .botones button { width: 100%; justify-content: center; }
+}
+
+/* ------- Vista: baja el texto para “llenar hueco” ------- */
+.presentacion .texto {
+  margin-top: clamp(10px, 6vw, 120px);
+}
+
+/* ------- FAB subrayado ------- */
+.hlFab {
+  position: fixed;
+  right: 24px;
+  bottom: 96px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid #ffffff22;
+  background: radial-gradient(120% 120% at 30% 20%, var(--accent), var(--accent-deep));
+  color: #14081c;
+  font-size: 24px;
+  font-weight: 900;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 16px 40px rgba(0,0,0,.45);
+  transition: transform .12s ease, box-shadow .2s ease, filter .2s ease;
+  z-index: 40;
+}
+.hlFab:hover { transform: translateY(-2px); filter: brightness(1.05); }
+.hlFab.active { box-shadow: 0 0 0 6px #ff4ecd33, 0 18px 44px rgba(0,0,0,.52); }
+
+/* Oculta botón inline (usamos FAB) */
+.presentacion-editar .highlightBtn { display: none; }
+
+/* Textarea en modo subrayado */
+.bioTextareaWrapper textarea[data-highlight="true"] {
+  border-color: #ff4ecd7a;
+  box-shadow: 0 0 0 3px #ff4ecd26;
+  caret-color: #ffb0e6;
+}
+
+/* Upload: click seguro y capas */
+.uploadWrapper { position: relative; cursor: pointer; }
+.imagenPreview { pointer-events: none; }
+.uploadBtn { z-index: 3; }

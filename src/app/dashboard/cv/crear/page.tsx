@@ -1,5 +1,4 @@
 'use client';
-
 import { useMemo, useState } from 'react';
 import { blockMapper } from './lib/blockMapper';
 import type { Bloque } from './types/bloques';
@@ -21,13 +20,13 @@ export default function CrearCV() {
   const activosOrdenados = useMemo(
     () => BLOQUES_BASE.filter(b => b.activo).sort((a, b) => a.orden - b.orden),
     []
-  );
+  ); 
 
   return (
     <main style={{ position: 'relative', padding: 24 }}>
       {activosOrdenados.map(bloque => {
         const Componente = blockMapper[bloque.id];
-        if (!Componente) return null; // bloque aún no implementado
+        if (!Componente) return null; 
         return <Componente key={bloque.id} modo={modo} />;
       })}
 
@@ -57,3 +56,8 @@ export default function CrearCV() {
     </main>
   );
 }
+/**
+ * ahora ya no tinene erroes pero ahora cmo funciona 
+ * ya que anrtes lo tenia en compoente.tsx ahora esta en factures/presentacion 
+ * y viene todo lo que creamos  que sigue ?? para que agoea tme este 
+ */
