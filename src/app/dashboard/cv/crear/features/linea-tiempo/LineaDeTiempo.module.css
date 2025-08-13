@@ -1,0 +1,304 @@
+/* ===================== TOKENS ===================== */
+:root {
+  --txt: #f2f3f7;
+  --muted: #b8b9c2;
+  --border: rgba(255,255,255,.14);
+  --accent: #ff4ecd;
+  --accent2: #7c3aed;
+}
+
+/* ===================== V I E W  (mejorado) ===================== */
+
+/* Contenedor principal de la vista */
+.wrap { 
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 32px;
+  color: var(--txt);
+}
+
+/* Frase */
+.quote{
+  margin: 70px 0 22px;
+  text-align: center;
+  font-size: clamp(18px, 2.6vw, 24px);
+  font-weight: 800;
+  letter-spacing: -.01em;
+  color: #ffffff;
+  opacity: .95;
+}
+
+/* Viewport */
+.viewport{
+  position: relative;
+  border-radius: 22px;
+  padding: 28px 20px 26px;
+  overflow: hidden;
+  box-shadow: 0 16px 50px rgba(0,0,0,.28);
+
+}
+
+/* ==== TIMELINE VIEW: números arriba de la línea ==== */
+
+/* Lista horizontal */
+.steps{
+  /* tamaño del número y altura de la franja de línea */
+  --num-size: clamp(46px, 7vw, 86px);
+  --row2: 30px;
+  --line-y: calc(var(--num-size) + (var(--row2) / 2));
+
+  position: relative;
+  list-style: none;
+  display: flex;
+  gap: clamp(20px, 3vw, 34px);
+
+  /* espacio total arriba */
+  padding: calc(var(--num-size) + var(--row2) + 26px)
+           clamp(8px, 2vw, 16px)
+           10px;
+
+  margin: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+
+  /* scrollbar sutil */
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff22 transparent;
+}
+.steps::-webkit-scrollbar{ height: 8px; }
+.steps::-webkit-scrollbar-track{ background: transparent; }
+.steps::-webkit-scrollbar-thumb{ background: #ffffff22; border-radius: 8px; }
+
+/* Línea central (mitad de la fila 2) */
+.steps::before{
+  content: '';
+  position: absolute;
+  left: clamp(10px, 2vw, 20px);
+  right: clamp(10px, 2vw, 20px);
+  top: var(--line-y);
+  height: 2px;
+  background: linear-gradient(90deg, #ffffff08, #ff4ecd55 45%, #ffffff08);
+  box-shadow: 0 0 18px #ff4ecd33;
+  pointer-events: none;
+}
+
+/* Cada evento: 3 filas → número | línea+dot | caption */
+.step{
+  scroll-snap-align: start;
+  min-width: clamp(240px, 34vw, 320px);
+  flex: 0 0 auto;
+
+  position: relative;
+  display: grid;
+  grid-template-rows: var(--num-size) var(--row2) auto;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+
+  padding: 0 10px 12px;
+}
+
+/* Número gigante (fila 1) */
+.index{
+  grid-row: 1;
+  align-self: end;
+  margin: 0;
+  font-size: var(--num-size);
+  line-height: .9;
+  font-weight: 900;
+  letter-spacing: .02em;
+  color: #ffffff;
+  opacity: .12;
+  transition: transform .18s ease, opacity .18s ease, filter .18s ease;
+}
+
+/* Dot (fila 2) */
+.dot{
+  grid-row: 2;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0;
+  background: radial-gradient(circle at 50% 40%, #fff 10%, #ffd6f2 35%, var(--accent) 70%);
+  box-shadow:
+    0 0 0 4px #ff4ecd26,
+    0 0 16px #ff4ecd55,
+    0 2px 16px rgba(0,0,0,.35);
+  transition: transform .15s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+/* Título/fecha (fila 3) */
+.caption{
+  grid-row: 3;
+  margin: 10px 0 0;
+  line-height: 1.45;
+  font-weight: 700;
+  color: #f6f2f8;
+  text-wrap: balance;
+}
+.date{ color:#ffffffa6; font-weight:700; }
+
+/* Enlace (si lo usas) */
+.link{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #ffe8f9;
+  text-decoration: none;
+  border-bottom: 1px dashed #ffe8f97a;
+  padding-bottom: 1px;
+  opacity: .9;
+  transition: opacity .18s ease, border-color .18s ease, transform .12s ease;
+}
+.link:hover{ opacity: 1; border-color: #ffe8f9; transform: translateY(-1px); }
+
+/* Hover: realce */
+.step:hover .index,
+.step:focus-within .index { opacity:.2; transform:scale(1.03); filter:contrast(1.08); }
+.step:hover .dot,
+.step:focus-within .dot {
+  transform: scale(1.05);
+  box-shadow:
+    0 0 0 6px #ff4ecd2e,
+    0 0 22px #ff4ecd7a,
+    0 4px 14px rgba(0,0,0,.45);
+}
+
+/* Nav buttons a la altura de la línea */
+.navBtn{
+  position: absolute;
+  top: var(--line-y);
+  transform: translateY(-50%);
+  width: 42px; height: 42px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.14);
+  background: radial-gradient(120% 120% at 30% 20%, var(--accent), var(--accent2));
+  color: #14081c;
+  display: grid; place-items: center;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(0,0,0,.45);
+  transition: transform .12s ease, box-shadow .2s ease, filter .2s ease, opacity .2s ease;
+}
+.navBtn:hover{ transform: translateY(calc(-50% - 1px)); filter: brightness(1.06); }
+.navBtn:disabled{ opacity: .35; filter: grayscale(.35); cursor: not-allowed; }
+.left{ left: 8px; } 
+.right{ right: 8px; }
+
+/* Responsivo */
+@media (max-width: 900px){
+  .steps{ --num-size: clamp(40px, 9vw, 66px); gap: 18px; }
+  .step{ min-width: 220px; }
+}
+@media (max-width: 640px){
+  .viewport{ padding: 22px 14px; }
+  .steps{ gap: 16px; }
+}
+
+/* ===================== E D I T O R  (mejorado) ===================== */
+
+/* Barra de herramientas */
+.tools{
+  display:flex; justify-content:flex-end; align-items:center;
+  margin: 6px 0 14px;
+}
+.addBtn{
+  display:inline-flex; gap:8px; align-items:center;
+  padding:10px 14px; border-radius:12px;
+  border:1px solid var(--border);
+  background: linear-gradient(180deg, #ffffff12, #ffffff08);
+  color: var(--txt); font-weight:800; cursor:pointer;
+  transition: border-color .18s ease, transform .12s ease, background .2s ease;
+}
+.addBtn:hover{ border-color:#ffffff25; background: linear-gradient(180deg, #ffffff18, #ffffff0f); transform: translateY(-1px); }
+
+/* Lista y tarjetas */
+.editList{
+  list-style-type:none;
+  margin:0; padding:0;
+  display:grid; gap:16px;
+}
+.editList > li{ list-style:none; }
+
+/* Tarjeta */
+.editItem{
+  background: linear-gradient(180deg, #0e0e14cc, #0e0e14a6);
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:16px;
+  padding: 14px;
+  display:grid;
+  grid-template-columns: auto 1fr auto; /* orden | campos | eliminar */
+  gap:14px;
+  transition: border-color .18s ease, box-shadow .18s ease, transform .12s ease;
+}
+.editItem:hover,
+.editItem:focus-within{
+  border-color:#ff4ecd55;
+  box-shadow: 0 8px 32px rgba(0,0,0,.28), 0 0 0 3px #ff4ecd22 inset;
+}
+
+/* Orden (↑/↓) */
+.orderBtns{
+  display:flex; flex-direction:column; gap:8px;
+}
+.iconBtn{
+  width:36px; height:36px; border-radius:10px;
+  border:1px solid var(--border);
+  background:#ffffff14; color: var(--txt);
+  display:grid; place-items:center; cursor:pointer;
+  transition: transform .12s ease, background .2s ease, border-color .18s ease, opacity .18s ease;
+}
+.iconBtn:hover{ transform: translateY(-1px); background:#ffffff1f; border-color:#ffffff2a; }
+.iconBtn:disabled{ opacity:.45; filter: grayscale(.4); cursor:not-allowed; }
+
+/* Campos */
+.fields{
+  display:grid; grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:12px;
+}
+.label{
+  display:grid; gap:6px;
+  font-size:13px; font-weight:800; color:#f6e8f2;
+}
+.label span{
+  display:inline-flex; align-items:center; gap:8px;
+  letter-spacing:.01em;
+}
+
+/* Inputs */
+.input, .textarea{
+  width:100%;
+  background:#0f0f12;
+  color: var(--txt);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  padding:10px 12px;
+  outline:none;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.input{ height:44px; }
+.textarea{ min-height:88px; resize:vertical; }
+.input::placeholder, .textarea::placeholder{ color:#ffffff6b; }
+.input:focus, .textarea:focus{
+  border-color:#ff4ecd7a;
+  box-shadow: 0 0 0 3px #ff4ecd28;
+}
+
+/* Eliminar */
+.removeCol{ display:flex; align-items:flex-start; }
+.removeBtn{
+  width:36px; height:36px; border-radius:10px;
+  border:1px solid #ff4ecd55; background:#ff4ecd22; color:#ffd3f1;
+  display:grid; place-items:center; cursor:pointer;
+  transition: transform .12s ease, box-shadow .18s ease, background .2s ease, border-color .2s ease;
+}
+.removeBtn:hover{ transform: translateY(-1px); background:#ff4ecd33; border-color:#ff4ecd77; }
+
+/* Responsive editor */
+@media (max-width: 980px){
+  .fields{ grid-template-columns: 1fr; }
+  .editItem{ grid-template-columns: auto 1fr auto; }
+}
+@media (max-width: 640px){
+  .editItem{ padding:12px; gap:10px; }
+  .orderBtns{ flex-direction:row; }
+}

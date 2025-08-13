@@ -5,10 +5,11 @@ import { Modo } from '@/app/dashboard/cv/crear/types/modo';
 
 
 import FraseYRedes from '../components/FraseYRedes';
-import LineaDeTiempo from '../components/LineaDeTiempo';
+
 import Galeria from '../components/Galeria';
 import Educacion from '../components/Educacion';
 import PresentacionCard from '../features/presentacion/components/PresentacionCard';
+import { LineaDeTiempo } from '../features/linea-tiempo';
 
 // Todos los bloques deben aceptar (opcional) la prop `modo`
 export type BloqueComponent = FC<{ modo?: Modo }>;
