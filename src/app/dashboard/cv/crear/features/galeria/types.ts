@@ -2,8 +2,8 @@ export type Modo = 'editar' | 'vista';
 
 export type GalleryItem = {
   id: string;
-  src: string;        // URL (objectURL o remota)
+  src: string;
   title: string;
   desc: string;
-  _objectUrl?: boolean; // si es un objectURL para revocarlo
+  _objectUrl?: boolean;
 };
