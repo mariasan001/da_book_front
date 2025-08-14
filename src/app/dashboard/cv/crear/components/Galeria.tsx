@@ -7,10 +7,10 @@ import styles from './Galeria.module.css';
 
 type Item = {
   id: string;
-  src: string;        // URL (objectURL o remota)
+  src: string;        
   title: string;
   desc: string;
-  _objectUrl?: boolean; // para limpiar si es local
+  _objectUrl?: boolean; 
 };
 
 const uid = () =>
